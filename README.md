@@ -25,14 +25,8 @@ Static HTML website for the [Institute for Seabird Research and Conservation](ht
 
 ## Media
 
-Local images are stored in `media/`. The homepage video is hosted on the WordPress media library at middletonisland.org.
+Local images are stored in `media/`.
 
 ## Deployment
 
-These are static HTML files with no server-side requirements. Upload the directory to any static host (GitHub Pages, Netlify, Cloudflare Pages, etc.) or paste page content into WordPress Custom HTML blocks.
-
-## Notes
-
-- Donation processing via [Infinite Giving](https://infinitegiving.com) (App ID: CO5PQRRJS)
-- All pages share a consistent header/footer and navigation structure
-- The `archive/` folder contains earlier drafts and is not part of the live site
+These are static HTML files with no server-side requirements. Upload the directory to any static host (GitHub Pages, Netlify, Cloudflare Pages, etc.).
