@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Products — Middleton Island Marine Biological Station</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a2a2e;
+    --sea-deep: #1e3a3f;
+    --sea-mid: #2d5a5e;
+    --sea-light: #4a8a8e;
+    --foam: #c8ddd5;
+    --sand: #e8dfd0;
+    --warm-white: #f5f2ec;
+    --gull-white: #faf9f6;
+    --accent: #c47a3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--gull-white);
+    line-height: 1.7;
+  }
+
+  /* === NAV === */
+  header {
+    background: var(--gull-white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(26,42,46,0.08);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--sea-deep);
+    text-decoration: none;
+  }
+
+  nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+  nav ul li { list-style: none; }
+  nav a { text-decoration: none; color: var(--sea-mid); font-size: 0.9rem; transition: color 0.2s; }
+  nav a:hover, nav a.active { color: var(--accent); }
+
+  main { margin-top: 72px; }
+
+  /* === PAGE HERO === */
+  .page-hero {
+    background: linear-gradient(135deg, var(--sea-deep), var(--sea-mid));
+    color: white;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+  }
+
+  .page-hero .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--foam);
+    margin-bottom: 1rem;
+  }
+
+  .page-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+
+  .page-hero p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  /* === STATS BAR === */
+  .stats-bar {
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .stats-bar .stat {
+    padding: 1.75rem 2rem;
+    text-align: center;
+    border-right: 1px solid var(--sand);
+  }
+
+  .stats-bar .stat:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--sea-deep);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #666;
+  }
+
+  /* === DECADE NAV === */
+  .decade-nav {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--sand);
+    position: sticky;
+    top: 72px;
+    z-index: 100;
+  }
+
+  .decade-nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .decade-nav-inner::-webkit-scrollbar { display: none; }
+
+  .decade-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: var(--sea-mid);
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .decade-link:hover, .decade-link.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* === MAIN CONTENT === */
+  .content-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+  }
+
+  /* === DECADE SECTION === */
+  .decade-section {
+    padding-top: 4rem;
+    scroll-margin-top: 140px;
+  }
+
+  .decade-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--sea-deep);
+  }
+
+  .decade-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--sea-deep);
+  }
+
+  .decade-count {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sea-light);
+  }
+
+  /* === CITATION === */
+  .citation-list {
+    list-style: none;
+  }
+
+  .citation-item {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.75rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(232,223,208,0.6);
+    align-items: baseline;
+  }
+
+  .citation-item:last-child { border-bottom: none; }
+
+  .citation-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--sea-light);
+    font-weight: 500;
+    text-align: right;
+    padding-top: 0.05rem;
+  }
+
+  .citation-text {
+    font-size: 0.93rem;
+    color: #3a4a4e;
+    line-height: 1.65;
+  }
+
+  /* Highlight journal name (text in italics in original) */
+  .citation-text em {
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  /* === FOOTER === */
+  footer {
+    background: var(--sea-deep);
+    color: rgba(200,221,213,0.8);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--foam);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a { color: var(--foam); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .footer-links a:hover { color: white; }
+
+  .footer-contact {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(200,221,213,0.2);
+    padding-top: 2rem;
+  }
+
+  .footer-contact a { color: var(--foam); text-decoration: none; }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .header-content { flex-direction: column; gap: 1rem; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    main { margin-top: 120px; }
+    .decade-nav { top: 120px; }
+    .stats-bar { grid-template-columns: 1fr; }
+    .stats-bar .stat { border-right: none; border-bottom: 1px solid var(--sand); }
+    .citation-item { grid-template-columns: 2rem 1fr; gap: 0.5rem; }
+    .citation-text { font-size: 0.88rem; }
+    .footer-links { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- === NAV === -->
+<header>
+  <div class="header-content">
+    <a href="index.html" class="logo">Middleton Island</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="research-products.html" class="active">Research Products</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donations.html" style="background:var(--accent);color:white;padding:0.4rem 1rem;border-radius:3px;">Donate</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- === PAGE HERO === -->
+  <section class="page-hero">
+    <p class="eyebrow">Middleton Island Marine Biological Station</p>
+    <h1>Research Products</h1>
+    <p>Peer-reviewed publications, book chapters, and scientific reports produced from research conducted at Middleton Island since 1979.</p>
+  </section>
+
+  <!-- === STATS === -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-number">117</div>
+      <div class="stat-label">Publications</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">40+</div>
+      <div class="stat-label">Years of Research</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">1979–2025</div>
+      <div class="stat-label">Publication Span</div>
+    </div>
+  </div>
+
+  <!-- === DECADE NAV === -->
+  <nav class="decade-nav" aria-label="Jump to decade">
+    <div class="decade-nav-inner">
+      <a href="#d1970s" class="decade-link">1970s</a>
+      <a href="#d1980s" class="decade-link">1980s</a>
+      <a href="#d1990s" class="decade-link">1990s</a>
+      <a href="#d2000s" class="decade-link">2000s</a>
+      <a href="#d2010s" class="decade-link">2010s</a>
+      <a href="#d2020s" class="decade-link">2020s</a>
+    </div>
+  </nav>
+
+  <div class="content-wrap">
+
+    <!-- === 1970s === -->
+    <section class="decade-section" id="d1970s">
+      <div class="decade-header">
+        <h2 class="decade-title">1970s</h2>
+        <span class="decade-count">1 publication</span>
+      </div>
+      <ol class="citation-list">
+        <li class="citation-item">
+          <span class="citation-num">1</span>
+          <p class="citation-text">Hatch, S.A., T.W. Pearson, and P.J. Gould. 1979. Reproductive ecology of seabirds at Middleton Island, Alaska. <em>U.S. Dep. Commer. NOAA, OCSEAP Ann. Rep.</em> 2: 233–308.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- === 1980s === -->
+    <section class="decade-section" id="d1980s">
+      <div class="decade-header">
+        <h2 class="decade-title">1980s</h2>
+        <span class="decade-count">3 publications</span>
+      </div>
+      <ol class="citation-list">
+        <li class="citation-item">
+          <span class="citation-num">2</span>
+          <p class="citation-text">Hatch, S.A. 1983. The fledging of common and thick-billed murres on Middleton Island, Alaska. <em>J. Field Ornithol.</em> 54: 266–274.</p>
+        </li>
+        <li class="citation-item">
+          <span class="citation-num">3</span>
+          <p class="citation-text">Hatch, S.A. 1984. Nestling diet and feeding rates of rhinoceros auklets in Alaska. Pages 106–115 in D.N. Nettleship, G.A. Sanger, and P.F. Springer (eds.), Marine birds: their feeding ecology and commercial fisheries relationships. <em>Can. Wildl. Serv. Spec. Pub.</em>, Ottawa.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- === 1990s === -->
+    <section class="decade-section" id="d1990s">
+      <div class="decade-header">
+        <h2 class="decade-title">1990s</h2>
+        <span class="decade-count">5 publications</span>
+      </div>
+      <ol class="citation-list">
+        <li class="citation-item">
+          <span class="citation-num">4</span>
+          <p class="citation-text">Hatch, S.A., B.D. Roberts, and B.S. Fadely. 1993. Adult survival of black-legged kittiwakes <em>Rissa tridactyla</em> in a Pacific colony. <em>Ibis</em> 135: 247–254.</p>
+        </li>
+        <li class="citation-item">
+          <span class="citation-num">5</span>
+          <p class="citation-text">Hatch, S.A., G.V. Byrd, D.B. Irons, and G.L. Hunt, Jr. 1993. Status and ecology of kittiwakes (<em>Rissa tridactyla</em> and <em>R. brevirostris</em>) in the North Pacific. Pages 140–153 in K. Vermeer et al. (eds.), Status, ecology, and conservation of marine birds of the North Pacific. <em>Can. Wildl. Serv. Spec. Pub.</em>, Ottawa.</p>
+        </li>
+        <li class="citation-item">
+          <span class="citation-num">6</span>
+          <p class="citation-text">Roberts, B.D. and S.A. Hatch. 1993. Behavioral ecology of black-legged kittiwakes during chick rearing in a failing colony. <em>Condor</em> 95: 330–342.</p>
+        </li>
+        <li class="citation-item">
+          <span class="citation-num">7</span>
+          <p class="citation-text">Roberts, B.D. and S.A. Hatch. 1994. Chick movements and adoption in a colony of black-legged kittiwakes. <em>Wilson Bull.</em> 106: 289–298.</p>
+        </li>
+        <li class="citation-item">
+          <span class="citation-num">8</span>
+          <p class="citation-text">Jodice, P.G.R., R.B. Lanctot, V.A. Gill, D.D. Roby, and S.A. Hatch. 2000. Sexing adult black-legged kittiwakes by DNA, behavior, and morphology. <em>Waterbirds</em> 23: 407–417.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- === 2000s === -->
+    <section class="decade-section" id="d2000s">
+      <div class="decade-header">
+        <h2 class="decade-title">2000s</h2>
+        <span class="decade-count">23 publications</span>
+      </div>
+      <ol class="citation-list">
+        <li class="citation-item"><span class="citation-num">9</span><p class="citation-text">Gill, V.A., S.A. Hatch, and R.B. Lanctot. 2002. Sensitivity of breeding parameters to food supply in black-legged kittiwakes <em>Rissa tridactyla.</em> <em>Ibis</em> 144: 268–283.</p></li>
+        <li class="citation-item"><span class="citation-num">10</span><p class="citation-text">Gill, V.A. and S.A. Hatch. 2002. Components of productivity in black-legged kittiwakes <em>Rissa tridactyla</em>: response to supplemental feeding. <em>J. Avian Biol.</em> 33: 113–126.</p></li>
+        <li class="citation-item"><span class="citation-num">11</span><p class="citation-text">Jodice, P.G.R., D.D. Roby, V.A. Gill, S.A. Hatch, R.G. Lanctot, and G.H. Visser. 2002. Does food availability affect energy expenditure of nesting seabirds? A supplemental feeding experiment with black-legged kittiwakes. <em>Can. J. Zool.</em> 80: 214–222.</p></li>
+        <li class="citation-item"><span class="citation-num">12</span><p class="citation-text">Lanctot, R.B., S.A. Hatch, V.A. Gill, and M. Eens. 2003. Are corticosterone levels a good indicator of food availability and reproductive performance in a kittiwake colony? <em>Hormones and Behav.</em> 43: 489–502.</p></li>
+        <li class="citation-item"><span class="citation-num">13</span><p class="citation-text">Hatch, S.A. 2003. Statistical power for detecting trends with applications to seabird monitoring. <em>Biol. Conserv.</em> 111: 317–329.</p></li>
+        <li class="citation-item"><span class="citation-num">14</span><p class="citation-text">Gill, V.A., S.A. Hatch, and R.B. Lanctot. 2004. Colonization, population growth, and nesting success of black oystercatchers following a seismic uplift. <em>Condor</em> 106: 791–800.</p></li>
+        <li class="citation-item"><span class="citation-num">15</span><p class="citation-text">Gasparini, J., A. Roulin, V.A. Gill, S.A. Hatch, and T. Boulinier. 2006. Kittiwakes strategically reduce investment in replacement clutches. <em>Proc. R. Soc. B</em>: 1550–1554.</p></li>
+        <li class="citation-item"><span class="citation-num">16</span><p class="citation-text">Gasparini, J., A. Roulin, V.A. Gill, S.A. Hatch, and T. Boulinier. 2006. In kittiwakes food availability partially explains the seasonal decline in humoral immunocompetence. <em>Func. Ecol.</em> 20: 457–463.</p></li>
+        <li class="citation-item"><span class="citation-num">17</span><p class="citation-text">Van Nus, T. 2006. The simple diet of a Northern Harrier <em>Circus cyaneus hudsonius</em> pair at Middleton Island in the Gulf of Alaska. <em>De Takkeling</em> 14: 68–77.</p></li>
+        <li class="citation-item"><span class="citation-num">18</span><p class="citation-text">Burns, J.M., T.M. Williams, S.M. Secor, N. Owen-Smith, N.A. Bargmann, and M.A. Castellini. 2006. New insights into the physiology of natural foraging. <em>Physiol. Biochem. Zool.</em> 79: 242–249.</p></li>
+        <li class="citation-item"><span class="citation-num">19</span><p class="citation-text">Kempenaers, B., R.B. Lanctot, V.A. Gill, S.A. Hatch, and M. Valcu. 2007. Do females trade copulations for food? An experimental study on kittiwakes (<em>Rissa tridactyla</em>). <em>Behav. Ecol.</em> 18: 345–353.</p></li>
+        <li class="citation-item"><span class="citation-num">20</span><p class="citation-text">Gasparini, J., T. Boulinier, V.A. Gill, D. Gil, S.A. Hatch, and A. Roulin. 2007. Food availability affects the maternal transfer of androgens and antibodies into eggs of a colonial seabird. <em>J. Evol. Biol.</em> 20: 874–880.</p></li>
+        <li class="citation-item"><span class="citation-num">21</span><p class="citation-text">Thayer, J.A., D.F. Bertram, S.A. Hatch, M.J. Hipfner, L. Slater, W.J. Sydeman, and Y. Watanuki. 2008. Forage fish of the Pacific Rim as revealed by diet of a piscivorous seabird: synchrony and relationships with sea surface temperature. <em>Can. J. Fish. Aquat. Sci.</em> 65: 1610–1622.</p></li>
+        <li class="citation-item"><span class="citation-num">22</span><p class="citation-text">Sears, J. and S.A. Hatch. 2008. Rhinoceros auklet developmental responses to food limitation: an experimental study. <em>Condor</em> 110: 709–717.</p></li>
+        <li class="citation-item"><span class="citation-num">23</span><p class="citation-text">Sears, J., S.A. Hatch, and D.M. O'Brien. 2008. Disentangling effects of growth and nutritional status on seabird stable isotope ratios. <em>Oecologia</em> 153: 11–18.</p></li>
+        <li class="citation-item"><span class="citation-num">24</span><p class="citation-text">White, J., R.H. Wagner, F. Helfenstein, S.A. Hatch, H. Mulard, L.C. Naves, and E. Danchin. 2008. Multiple deleterious effects of experimentally aged sperm in a monogamous bird. <em>Proc. Natl. Acad. Sci.</em> 105: 13947–13952.</p></li>
+        <li class="citation-item"><span class="citation-num">25</span><p class="citation-text">Mulard, H., T. Aubin, J.F. White, S.A. Hatch, and E. Danchin. 2008. Experimental evidence of vocal recognition in young and adult black-legged kittiwakes. <em>Anim. Behav.</em> 76: 1855–1861.</p></li>
+        <li class="citation-item"><span class="citation-num">26</span><p class="citation-text">Guzzetti, B.M., S.L. Talbot, D.F. Tessler, V.A. Gill, and E.C. Murphy. 2008. Secrets in the eyes of black oystercatchers: a new sexing technique. <em>J. Field Ornithol.</em> 79: 215–223.</p></li>
+        <li class="citation-item"><span class="citation-num">27</span><p class="citation-text">Leclaire, S., H. Mulard, R.H. Wagner, S.A. Hatch, and E. Danchin. 2009. Can kittiwakes smell? Experimental evidence in a larid species. <em>Ibis</em> 151: 584–597.</p></li>
+        <li class="citation-item"><span class="citation-num">28</span><p class="citation-text">Suryan, R.M., V.S. Saba, B.P. Wallace, S.A. Hatch, M. Frederiksen, and S. Wanless. 2009. Environmental forcing on life history strategies: multi-trophic level response at ocean basin scales. <em>Prog. Oceanogr.</em> 81: 214–222.</p></li>
+        <li class="citation-item"><span class="citation-num">29</span><p class="citation-text">Hatch, S.A., G.J. Robertson, and P.H. Baird. 2009. Black-legged kittiwake (<em>Rissa tridactyla</em>). In The Birds of North America, No. 92. The Birds of North America Online, Philadelphia, PA.</p></li>
+        <li class="citation-item"><span class="citation-num">30</span><p class="citation-text">Mulard, H., E. Danchin, S.L. Talbot, A.M. Ramey, S.A. Hatch, J.F. White, F. Helfenstein, and R.H. Wagner. 2009. Evidence that pairing with genetically similar mates is maladaptive in a monogamous bird. <em>BMC Evol. Biol.</em> 9: 147–158.</p></li>
+        <li class="citation-item"><span class="citation-num">31</span><p class="citation-text">Kotzerka, J., S.A. Hatch, and S. Garthe. 2010. GPS tracking devices reveal foraging strategies of black-legged kittiwakes. <em>J. Ornithol.</em> 151: 459–467.</p></li>
+      </ol>
+    </section>
+
+    <!-- === 2010s === -->
+    <section class="decade-section" id="d2010s">
+      <div class="decade-header">
+        <h2 class="decade-title">2010s</h2>
+        <span class="decade-count">48 publications</span>
+      </div>
+      <ol class="citation-list">
+        <li class="citation-item"><span class="citation-num">32</span><p class="citation-text">Kitaysky, A.S., J.F. Piatt, S.A. Hatch, E.V. Kitaiskaia, Z.M. Benowitz-Fredericks, M.T. Shultz, and J.C. Wingfield. 2010. Food availability and population processes: severity of nutritional stress during reproduction predicts survival of long-lived seabirds. <em>Funct. Ecol.</em> 24: 625–637.</p></li>
+        <li class="citation-item"><span class="citation-num">33</span><p class="citation-text">White, J., P. Mirleau, E. Danchin, H. Mulard, S.A. Hatch, P. Hebb, and R.H. Wagner. 2010. Sexually transmitted bacteria affect female cloacal assemblages in a wild bird. <em>Ecol. Lett.</em> 13: 1515–1524.</p></li>
+        <li class="citation-item"><span class="citation-num">34</span><p class="citation-text">White, J., S. Leclaire, M. Kriloff, H. Mulard, S.A. Hatch, and E. Danchin. 2010. Sustained increase in food supplies reduces broodmate aggression in black-legged kittiwakes. <em>Anim. Behav.</em> 79: 1095–1100.</p></li>
+        <li class="citation-item"><span class="citation-num">35</span><p class="citation-text">Johnson, M., P. Clarkson, M.I. Goldstein, S.M. Haig, R.B. Lanctot, D.F. Tessler, and D. Zwiefelhofer. 2010. Seasonal movements, winter range use, and migratory connectivity of the black oystercatcher. <em>Condor</em> 112: 731–743.</p></li>
+        <li class="citation-item"><span class="citation-num">36</span><p class="citation-text">Hatch, S.A., V.A. Gill, and D.M. Mulcahy. 2011. Migration and wintering areas of glaucous-winged gulls from south-central Alaska. <em>Condor</em> 113: 340–351.</p></li>
+        <li class="citation-item"><span class="citation-num">37</span><p class="citation-text">Kotzerka, J., S.A. Hatch, and S. Garthe. 2011. Evidence for foraging-site fidelity and individual foraging behavior of pelagic cormorants rearing chicks in the Gulf of Alaska. <em>Condor</em> 113: 80–88.</p></li>
+        <li class="citation-item"><span class="citation-num">38</span><p class="citation-text">Leclaire, S., T. Merkling, C. Raynaud, G. Giacinti, J.-M. Bessière, S.A. Hatch, and É. Danchin. 2011. An individual and a sex odor signature in kittiwakes? Study of the semiochemical composition of preen secretion and preen down feathers. <em>Naturwissenschaften</em> 98: 615–624.</p></li>
+        <li class="citation-item"><span class="citation-num">39</span><p class="citation-text">Hatch, S.A., V.A. Gill, and D.M. Mulcahy. 2011. Migration and wintering sites of pelagic cormorants determined by satellite telemetry. <em>J. Field Ornithol.</em> 82: 269–278.</p></li>
+        <li class="citation-item"><span class="citation-num">40</span><p class="citation-text">Leclaire, S., V. Bourret, R.H. Wagner, S.A. Hatch, F. Helfenstein, O. Chastel, and E. Danchin. 2011. Behavioral and physiological response to male handicap in chick-rearing black-legged kittiwakes. <em>Behav. Ecol.</em> 22: 1156–1165.</p></li>
+        <li class="citation-item"><span class="citation-num">41</span><p class="citation-text">Leclaire, S., T. Merkling, C. Raynaud, H. Mulard, J.-M. Bessière, E. Lhuillier, S.A. Hatch, and É. Danchin. 2011. Semiochemical compounds of preen secretion reflect genetic make-up in a seabird species. <em>Proc. R. Soc. B.</em> doi:10.1098/rspb.2011.1611.</p></li>
+        <li class="citation-item"><span class="citation-num">42</span><p class="citation-text">Leclaire, S., J. White, M. Battude, R.H. Wagner, S.A. Hatch, and E. Danchin. 2011. Integument coloration signals reproductive success, heterozygosity, and antioxidant levels in chick-rearing black-legged kittiwakes. <em>Naturwissenschaften</em> 98: 773–782.</p></li>
+        <li class="citation-item"><span class="citation-num">43</span><p class="citation-text">Merkling, T., S. Leclaire, E. Danchin, E. Lhuillier, R.H. Wagner, J. White, S.A. Hatch, and P. Blanchard. 2012. Food availability and offspring sex in a genetically monogamous seabird: insights from an experimental approach. <em>Behav. Ecol.</em> 23: 751–758.</p></li>
+        <li class="citation-item"><span class="citation-num">44</span><p class="citation-text">Schultner, J., A.S. Kitaysky, J. Welcker, and S.A. Hatch. 2013. Fat or lean: adjustment of endogenous energy stores to predictable and unpredictable changes in allostatic load. <em>Funct. Ecol.</em> 23: 45–55.</p></li>
+        <li class="citation-item"><span class="citation-num">45</span><p class="citation-text">Hatch, S.A. 2013. Kittiwake diets and chick production signal a 2008 regime shift in the northeast Pacific. <em>Mar. Ecol. Prog. Ser.</em> 477: 271–284.</p></li>
+        <li class="citation-item"><span class="citation-num">46</span><p class="citation-text">Schultner, J., A.S. Kitaysky, G.W. Gabrielsen, S.A. Hatch, and C. Bech. 2013. Differential reproductive responses to stress reveal the role of life history strategies within a species. <em>Proc. R. Soc. B.</em> 280: 20132090.</p></li>
+        <li class="citation-item"><span class="citation-num">47</span><p class="citation-text">Abbott, C.L., R.L. Millikin, M.J. Hipfner, S. Hatch, M. Ito, Y. Watanuki, and T.M. Burg. 2014. Genetic structure of rhinoceros auklets, <em>Cerorhinca monocerata</em>, breeding in British Columbia, Alaska, and Japan. <em>Mar. Biol.</em> 161: 275–283.</p></li>
+        <li class="citation-item"><span class="citation-num">48</span><p class="citation-text">Leclaire, S., P. Blanchard, J. White, S.A. Hatch, and E. Danchin. 2013. Symmetry of black wingtips is related to clutch size and integument coloration in black-legged kittiwakes. <em>Auk</em> 130: 541–547.</p></li>
+        <li class="citation-item"><span class="citation-num">49</span><p class="citation-text">Elliott, K.H., R.E. Ricklefs, A.J. Gaston, S.A. Hatch, J.R. Speakman, and G.K. Davoren. 2013. High flight costs, but low dive costs, in auks support the biomechanical hypothesis for flightlessness in penguins. <em>Proc. Nat. Acad. Sci. (USA)</em>: 10.1073/pnas.1304838110.</p></li>
+        <li class="citation-item"><span class="citation-num">50</span><p class="citation-text">Benowitz-Fredericks, Z.M., A.S. Kitaysky, J. Welker, and S.A. Hatch. 2013. Effects of food availability on yolk androgen deposition in the black-legged kittiwake (<em>Rissa tridactyla</em>), a seabird with facultative brood reduction. <em>PLoS ONE</em>: 10.1371/journal.pone.0062949.</p></li>
+        <li class="citation-item"><span class="citation-num">51</span><p class="citation-text">Elliott, K.H., J. Welcker, A.J. Gaston, S.A. Hatch, V. Palace, J.F. Hare, J.R. Speakman, and W.G. Anderson. 2013. Thyroid hormones correlate with resting metabolic rate, not daily energy expenditure, in two charadriiform seabirds. <em>Biol. Open</em> 2: 580–586.</p></li>
+        <li class="citation-item"><span class="citation-num">52</span><p class="citation-text">Vincenzi, S., S. Hatch, M. Mangel, and A. Kitaysky. 2013. Food availability affects onset of reproduction in a long-lived seabird. <em>Proc. R. Soc. B</em> 280: 20130554.</p></li>
+        <li class="citation-item"><span class="citation-num">53</span><p class="citation-text">Leclaire, S., W.F.D. van Dongen, S. Voccia, T. Merkling, C. Ducamp, S.A. Hatch, P. Blanchard, E. Danchin, and R.H. Wagner. 2014. Preen secretions encode information on MHC similarity in certain sex-dyads in a monogamous seabird. <em>Sci. Rep.</em> 4: 6920.</p></li>
+        <li class="citation-item"><span class="citation-num">54</span><p class="citation-text">Will, A.P., Y. Suzuki, K.H. Elliott, S.A. Hatch, Y. Watanuki, and A.S. Kitaysky. 2014. Feather corticosterone reveals developmental stress in seabirds. <em>J. Exp. Biol.</em> 217: 2371–2376.</p></li>
+        <li class="citation-item"><span class="citation-num">55</span><p class="citation-text">Merkling, T., O. Chastel, P. Blanchard, C. Trouve, S.A. Hatch, and E. Danchin. 2014. Physiological and fitness correlates of experimentally altered hatching asynchrony magnitude in chicks of a wild seabird. <em>Gen. Comp. Endocrinol.</em> 198: 32–38.</p></li>
+        <li class="citation-item"><span class="citation-num">56</span><p class="citation-text">Merkling, T., L. Agdere, E. Albert, R. Durieux, S.A. Hatch, E. Danchin, and P. Blanchard. 2014. Is natural hatching asynchrony optimal? An experimental investigation of sibling competition patterns in a facultatively siblicidal seabird. <em>Behav. Ecol. Sociobiol.</em> 68: 309–319.</p></li>
+        <li class="citation-item"><span class="citation-num">57</span><p class="citation-text">Welker, J., J.R. Speakman, K.H. Elliott, S.A. Hatch, and A.S. Kitaysky. 2014. Resting and daily energy expenditures during reproduction are adjusted in opposite directions in free-living birds. <em>Funct. Ecol.</em> 29: 250–258.</p></li>
+        <li class="citation-item"><span class="citation-num">58</span><p class="citation-text">Elliott, K.H., L.S. Chivers, L. Bessey, A.J. Gaston, S.A. Hatch, A. Kato, O. Osborne, Y. Ropert-Coudert, J.R. Speakman, and J.F. Hare. 2014. Windscapes shape seabird instantaneous energy costs but adult behavior buffers impact on offspring. <em>Mov. Ecol.</em> 2: 17.</p></li>
+        <li class="citation-item"><span class="citation-num">59</span><p class="citation-text">Elliott, K.H., K.M. O'Reilly, S.A. Hatch, A.J. Gaston, J.F. Hare, and W.G. Anderson. 2014. The prudent parent meets old age: a high stress response in very old seabirds supports the terminal restraint hypothesis. <em>Horm. Behav.</em> 66: 828–837.</p></li>
+        <li class="citation-item"><span class="citation-num">60</span><p class="citation-text">Leclaire, S., V. Bourret, P. Blanchard, C. de Franceschi, T. Merkling, S.A. Hatch, and É. Danchin. 2015. Carotenoids increase immunity and sex specifically affect color and redox homeostasis in a monochromatic seabird. <em>Behav. Ecol. Sociobiol.</em> doi: 10.1007/s00265-015-1922-0.</p></li>
+        <li class="citation-item"><span class="citation-num">61</span><p class="citation-text">Merkling, T., J. Welcker, M. Hewison, S.A. Hatch, A.S. Kitaysky, J.R. Speakman, E. Danchin, and P. Blanchard. 2015. Identifying the selective pressures underlying offspring sex-ratio adjustments: a case study in a wild seabird. <em>Behav. Ecol.</em> 26: 916–925.</p></li>
+        <li class="citation-item"><span class="citation-num">62</span><p class="citation-text">Vincenzi, S., S. Hatch, T. Merkling, and A.S. Kitaysky. 2015. Carry-over effects of food supplementation on recruitment and breeding performance of long-lived seabirds. <em>Proc. R. Soc. B</em> 282: 20150762.</p></li>
+        <li class="citation-item"><span class="citation-num">63</span><p class="citation-text">Will, A., Y. Watanuki, D.M. Kikuchi, N. Sato, M. Ito, M. Callahan, K. Wynne-Edwards, S. Hatch, K. Elliott, L. Slater, A. Takahashi, and A. Kitaysky. 2015. Feather corticosterone reveals stress associated with dietary changes in a breeding seabird. <em>Ecol. Evol.</em> doi: 10.1002/ece3.1694.</p></li>
+        <li class="citation-item"><span class="citation-num">64</span><p class="citation-text">Chivers, L.S., S.A. Hatch, and K.H. Elliott. 2016. Accelerometry reveals an impact of short-term tagging on seabird activity budgets. <em>Condor</em> 118: 159–168.</p></li>
+        <li class="citation-item"><span class="citation-num">65</span><p class="citation-text">Stothart, M.R., K.H. Elliott, T. Wood, S.A. Hatch, and J.R. Speakman. 2016. Counting calories in cormorants: dynamic body acceleration predicts daily energy expenditure measured in pelagic cormorants. <em>J. Exp. Biol.</em> 219: 2192–2200.</p></li>
+        <li class="citation-item"><span class="citation-num">66</span><p class="citation-text">Merkling, T., C. Perrot, F. Helfenstein, J.-B. Ferdy, L. Gaillard, E. Lefol, E. Voisin, S.A. Hatch, E. Danchin, and P. Blanchard. 2016. Maternal effects as drivers of sibling competition in a parent–offspring conflict context? An experimental test. <em>Ecol. Evol.</em> 6: 3699–3710.</p></li>
+        <li class="citation-item"><span class="citation-num">67</span><p class="citation-text">Young, R.C., J. Welcker, C.P. Barger, S.A. Hatch, T. Merkling, E.V. Kitaiskaia, M.F. Haussmann, and A.S. Kitaysky. 2017. Effects of developmental conditions on growth, stress and telomeres in black-legged kittiwake chicks. <em>Mol. Ecol.</em> 26: 3572–3584.</p></li>
+        <li class="citation-item"><span class="citation-num">68</span><p class="citation-text">Sydeman, W.J., J.F. Piatt, S.A. Thompson, M. García-Reyes, S.A. Hatch, M.L. Arimitsu, L. Slater, J.C. Williams, N.A. Rojek, S.G. Zador, and H.M. Renner. 2017. Puffins reveal contrasting relationships between forage fish and ocean climate in the North Pacific. <em>Fish. Oceanogr.</em> 26: 379–395.</p></li>
+        <li class="citation-item"><span class="citation-num">69</span><p class="citation-text">Merkling, T., P. Blanchard, O. Chastel, G. Glauser, A. Vallat-Michel, S. Hatch, E. Danchin, and F. Helfenstein. 2017. Reproductive effort and oxidative stress: effects of offspring sex and number on the physiological state of a long-lived bird. <em>Funct. Ecol.</em> 31: 1201–1209.</p></li>
+        <li class="citation-item"><span class="citation-num">70</span><p class="citation-text">Piatt, J.F., M.L. Arimitsu, W.J. Sydeman, S.A. Thompson, H. Renner, S. Zador, D. Douglas, S. Hatch, A. Kettle, and J. Williams. 2018. Biogeography of pelagic food webs in the North Pacific. <em>Fish. Oceanogr.</em> 27: 366–380.</p></li>
+        <li class="citation-item"><span class="citation-num">71</span><p class="citation-text">Cunningham, J., K. Elliott, K. Cottenie, S. Hatch, and S. Jacobs. 2018. Individual foraging location, but not dietary, specialization: implications for rhinoceros auklets as samplers of forage fish. <em>Mar. Ecol. Prog. Ser.</em> 605: 225–240.</p></li>
+        <li class="citation-item"><span class="citation-num">72</span><p class="citation-text">Merkling, T., S. Hatch, S. Leclaire, E. Danchin, and P. Blanchard. 2019. Offspring sex-ratio and environmental conditions in a seabird with sex-specific rearing costs: a long-term experimental approach. <em>Evol. Ecol.</em> 33. doi: 10.1007/s10682-019-09983-2.</p></li>
+        <li class="citation-item"><span class="citation-num">73</span><p class="citation-text">van Dongen, W., J. White, H. Brandl, S. Leclaire, S. Hatch, E. Danchin, and R. Wagner. 2019. Experimental evidence of a sexually transmitted infection in a wild vertebrate, the black-legged kittiwake (<em>Rissa tridactyla</em>). <em>Biol. J. Linn. Soc.</em> 127. doi: 10.1093/biolinnean/blz009.</p></li>
+        <li class="citation-item"><span class="citation-num">74</span><p class="citation-text">Patterson, A., H. Gilchrist, L. Chivers, S. Hatch, and K. Elliott. 2019. A comparison of techniques for classifying behavior from accelerometers for two species of seabird. <em>Ecol. Evol.</em> 9. doi: 10.1002/ece3.4740.</p></li>
+        <li class="citation-item"><span class="citation-num">75</span><p class="citation-text">Brown, K., A.G. Jimenez, S. Whelan, K. Lalla, S.A. Hatch, and K.H. Elliott. 2019. Muscle fiber structure in an aging long-lived seabird, the black-legged kittiwake (<em>Rissa tridactyla</em>). <em>J. Morphol.</em> 280: 1061–1070.</p></li>
+        <li class="citation-item"><span class="citation-num">76</span><p class="citation-text">Collins, S.M., S.A. Hatch, K.H. Elliott, and S.R. Jacobs. 2019. Boldness, mate choice and reproductive success in <em>Rissa tridactyla.</em> <em>Anim. Behav.</em> 154: 67–74.</p></li>
+        <li class="citation-item"><span class="citation-num">77</span><p class="citation-text">Thompson, S.A., M. García-Reyes, W.J. Sydeman, M.L. Arimitsu, S.A. Hatch, and J.F. Piatt. 2019. Effects of ocean climate on the length and condition of forage fish in the Gulf of Alaska. <em>Fish. Oceanogr.</em> 28: 658–671.</p></li>
+        <li class="citation-item"><span class="citation-num">78</span><p class="citation-text">Maxime, P., P. Blanchard, E. Danchin, S.A. Hatch, F. Helfenstein, H. Mulard, J. White, S. Leclaire, and R.H. Wagner. 2019. Behavioural avoidance of sperm ageing depends on genetic similarity of mates in a monogamous seabird. <em>Biol. J. Linn. Soc.</em> 128: 170–180.</p></li>
+        <li class="citation-item"><span class="citation-num">79</span><p class="citation-text">Leclaire, S., V. Bourret, M. Pineaux, P. Blanchard, E. Danchin, and S.A. Hatch. 2019. Red coloration varies with dietary carotenoid access and nutritional condition in kittiwakes. <em>J. Exp. Biol.</em> 222: jeb210237.</p></li>
+      </ol>
+    </section>
+
+    <!-- === 2020s === -->
+    <section class="decade-section" id="d2020s">
+      <div class="decade-header">
+        <h2 class="decade-title">2020s</h2>
+        <span class="decade-count">37 publications</span>
+      </div>
+      <ol class="citation-list">
+        <li class="citation-item"><span class="citation-num">80</span><p class="citation-text">Pineaux, M., T. Merkling, E. Danchin, S. Hatch, D. Duneau, P. Blanchard, and S. Leclaire. 2020. Sex and hatching order modulate the association between MHC-II diversity and fitness in early-life stages of a wild seabird. <em>Mol. Ecol.</em> 29: 3316–3329.</p></li>
+        <li class="citation-item"><span class="citation-num">81</span><p class="citation-text">Sun, A., S. Whelan, S.A. Hatch, and K.H. Elliott. 2020. Tags below three percent of body mass increase nest abandonment by rhinoceros auklets, but handling impacts decline as breeding progresses. <em>Mar. Ecol. Prog. Ser.</em> 643: 173–181.</p></li>
+        <li class="citation-item"><span class="citation-num">82</span><p class="citation-text">Aleksieva, A.A., J.R. Treberg, A.W. Diamond, S.A. Hatch, and K.H. Elliott. 2020. Foot web pentosidine does not covary strongly with age in four species of wild seabirds. <em>Exp. Gerontol.</em> 132: 110833.</p></li>
+        <li class="citation-item"><span class="citation-num">83</span><p class="citation-text">Whelan, S., S.A. Hatch, D.B. Irons, A. McKnight, and K.H. Elliott. 2020. Increased summer food supply decreases non-breeding movement in black-legged kittiwakes. <em>Biol. Lett.</em> 16: 20190725.</p></li>
+        <li class="citation-item"><span class="citation-num">84</span><p class="citation-text">Collins, P., J. Green, K. Elliott, P. Shaw, L. Chivers, S.A. Hatch, and L. Halsey. 2020. Coping with the commute: behavioural responses to wind conditions in a foraging seabird. <em>J. Avian Biol.</em> 51. doi: 10.1111/jav.02057.</p></li>
+        <li class="citation-item"><span class="citation-num">85</span><p class="citation-text">Osborne, O.E., P.D. O'Hara, S. Whelan, P. Zandbergen, S.A. Hatch, and K.H. Elliott. 2020. Breeding seabirds increase foraging range in response to an extreme marine heatwave. <em>Mar. Ecol. Prog. Ser.</em> 646. doi: 10.3354/meps13392.</p></li>
+        <li class="citation-item"><span class="citation-num">86</span><p class="citation-text">Hipfner, J.M., et al. 2020. Geolocator tagging links distributions in the non-breeding season to population genetic structure in a sentinel North Pacific seabird. <em>PLoS One</em> 15: e0240056.</p></li>
+        <li class="citation-item"><span class="citation-num">87</span><p class="citation-text">Lalla, K.M., S. Whelan, K. Brown, A. Patterson, A.G. Jimenez, S.A. Hatch, and K.H. Elliott. 2020. Accelerometry predicts muscle ultrastructure and flight capabilities in a wild bird. <em>J. Exp. Biol.</em> 223: jeb234104.</p></li>
+        <li class="citation-item"><span class="citation-num">88</span><p class="citation-text">Immer, A., T. Merkling, O. Chastel, S.A. Hatch, E. Danchin, P. Blanchard, and S. Leclaire. 2021. Spying on your neighbours? Social information affects timing of breeding and stress hormone levels in a colonial seabird. <em>Evol. Ecol.</em> 35: 1–19.</p></li>
+        <li class="citation-item"><span class="citation-num">89</span><p class="citation-text">Pineaux, M., T. Merkling, E. Danchin, S.A. Hatch, S. Leclaire, and P. Blanchard. 2021. MHC-II distance between parents predicts sex allocation decisions in a genetically monogamous bird. <em>Behav. Ecol.</em>, arab130.</p></li>
+        <li class="citation-item"><span class="citation-num">90</span><p class="citation-text">Whelan, S., S.A. Hatch, Z.M. Benowitz-Fredericks, C. Parenteau, O. Chastel, and K.H. Elliott. 2021. The effects of food supply on reproductive hormones and timing of reproduction in an income-breeding seabird. <em>Horm. Behav.</em> 127: 104874.</p></li>
+        <li class="citation-item"><span class="citation-num">91</span><p class="citation-text">Shoji, A., K.H. Elliott, Y. Watanuki, N. Basu, S. Whelan, J. Cunningham, S. Hatch, et al. 2021. Geolocators link marine mercury with levels in wild seabirds throughout their annual cycle. <em>Environ. Pollut.</em> 284: 117035.</p></li>
+        <li class="citation-item"><span class="citation-num">92</span><p class="citation-text">Albert, C., H.H. Helgason, M. Brault-Favrou, G.J. Robertson, S. Descamps, and 50 co-authors. 2021. Seasonal variation of mercury contamination in Arctic seabirds: a pan-Arctic assessment. <em>Sci. Total Environ.</em> 750: 142201.</p></li>
+        <li class="citation-item"><span class="citation-num">93</span><p class="citation-text">Suryan, R.M., M.L. Arimitsu, H.A. Coletti, R.R. Hopcroft, M.R. Lindeberg, S.J. Barbeaux, and 47 co-authors. 2021. Ecosystem response persists after a prolonged marine heatwave. <em>Sci. Rep.</em> 11: 6235.</p></li>
+        <li class="citation-item"><span class="citation-num">94</span><p class="citation-text">Arimitsu, M.L., J.F. Piatt, S. Hatch, R.M. Suryan, S. Batten, M.A. Bishop, R.W. Campbell, et al. 2021. Heatwave-induced synchrony within forage fish portfolio disrupts energy flow to top pelagic predators. <em>Glob. Change Biol.</em> 27: 1859–1878.</p></li>
+        <li class="citation-item"><span class="citation-num">95</span><p class="citation-text">Sydeman, W.J., D.S. Schoeman, S.A. Thompson, B.A. Hoover, M. García-Reyes, F. Daunt, P. Agnew, and 40 co-authors. 2021. Hemispheric asymmetry in ocean change and the productivity of ecosystem sentinels. <em>Science</em> 372: 980–983.</p></li>
+        <li class="citation-item"><span class="citation-num">96</span><p class="citation-text">Pineaux, M., T. Merkling, E. Danchin, S.A. Hatch, S. Leclaire, and P. Blanchard. 2021. MHC-II distance between parents predicts sex allocation decisions in a genetically monogamous bird. <em>Behav. Ecol.</em> 33: 245–251.</p></li>
+        <li class="citation-item"><span class="citation-num">97</span><p class="citation-text">Sauve, D., A. Charmantier, S.A. Hatch, and V.L. Friesen. 2022. Environmental conditions variably affect growth across the breeding season in a subarctic seabird. <em>Oecologia</em> 198: 307–318.</p></li>
+        <li class="citation-item"><span class="citation-num">98</span><p class="citation-text">Leclaire, S., M. Pineaux, P. Blanchard, J. White, and S.A. Hatch. 2022. Microbiota composition and diversity of multiple body sites vary according to reproductive performance in a seabird. <em>Mol. Ecol.</em> doi: 10.1111/mec.16398.</p></li>
+        <li class="citation-item"><span class="citation-num">99</span><p class="citation-text">Benowitz-Fredericks, Z.M., L.M. Lacey, S. Whelan, A.P. Will, S.A. Hatch, and A.S. Kitaysky. 2022. Telomere length correlates with physiological and behavioural responses of a long-lived seabird to an ecologically relevant challenge. <em>Proc. R. Soc. B</em> 289: 20220139.</p></li>
+        <li class="citation-item"><span class="citation-num">100</span><p class="citation-text">Tremblay, F., S. Whelan, E.S. Choy, S.A. Hatch, and K.H. Elliott. 2022. Resting costs too: the relative importance of active and resting energy expenditure in a sub-arctic seabird. <em>J. Exp. Biol.</em> 225: jeb243548.</p></li>
+        <li class="citation-item"><span class="citation-num">101</span><p class="citation-text">Kahane-Rapport, S.R., S. Whelan, J. Ammendolia, S.A. Hatch, K.H. Elliott, and S. Jacobs. 2022. Food supply and individual quality influence seabird energy expenditure and reproductive success. <em>Oecologia</em>. doi.org/10.1007/s00442-022-05191-y.</p></li>
+        <li class="citation-item"><span class="citation-num">102</span><p class="citation-text">Whelan, S., S.A. Hatch, A.J. Gaston, H.G. Gilchrist, and K.H. Elliott. 2022. Opposite, but insufficient, phenological responses to climate in two circumpolar seabirds: relative roles of phenotypic plasticity and selection. <em>Funct. Ecol.</em> doi: 10.1111/1365-2435.14064.</p></li>
+        <li class="citation-item"><span class="citation-num">103</span><p class="citation-text">Schaefer, A.L., K.B. Gorman, and M.A. Bishop. 2022. Light-level geolocation reveals the short-distance nonbreeding movements and distribution of tufted puffins throughout the Northeast Pacific Ocean. <em>Front. Mar. Sci.</em> 9: 999461.</p></li>
+        <li class="citation-item"><span class="citation-num">104</span><p class="citation-text">Sauve, D., V.L. Friesen, S.A. Hatch, K.H. Elliott, and A. Charmantier. 2023. Shifting environmental predictors of phenotypes under climate change: a case study of growth in high latitude seabirds. <em>J. Avian Biol.</em> e03062: 1–15.</p></li>
+        <li class="citation-item"><span class="citation-num">105</span><p class="citation-text">Sauve, D., A. Charmantier, S.A. Hatch, and V.L. Friesen. 2024. The magnitude of selection on growth varies among years and increases under warming conditions in a subarctic seabird. <em>Evol. Lett.</em> 8: 56–63.</p></li>
+        <li class="citation-item"><span class="citation-num">106</span><p class="citation-text">Barracho, T., S.A. Hatch, J. Kotzerka, S. Garthe, H.A. Schraft, S. Whelan, and K.H. Elliott. 2024. Survival costs of reproduction are independent of energy costs in a seabird, the pelagic cormorant. <em>Ecol. Evol.</em> e11414: 1–15.</p></li>
+        <li class="citation-item"><span class="citation-num">107</span><p class="citation-text">Pineaux, M., P. Blanchard, L. Ribeiro, S.A. Hatch, and S. Leclaire. 2023. A gull species recognizes MHC-II diversity and dissimilarity using odor cues. Pp. 139–152 in: Benoist S., D. Rekow, M. Keller, and F. Damon (eds.), Chemical Signals in Vertebrates 15.</p></li>
+        <li class="citation-item"><span class="citation-num">108</span><p class="citation-text">Schlener, J., K.H. Elliott, S. Whelan, S. Hatch, and M.F. Guigueno. 2023. If it ain't broke, don't fix it: variable foraging behaviour is associated with low kittiwake reproductive success. <em>Anim. Behav.</em> 209: 155–167.</p></li>
+        <li class="citation-item"><span class="citation-num">109</span><p class="citation-text">Shoji, A., S. Whelan, J.T. Cunningham, S.A. Hatch, Y. Niizuma, C. Nakajima, and K.H. Elliott. 2023. Ecological niche partitioning in two Pacific puffins. <em>Mar. Ecol. Prog. Ser.</em> 709: 125–139.</p></li>
+        <li class="citation-item"><span class="citation-num">110</span><p class="citation-text">Sozzoni, M., J. Ferrer Obiol, G. Formenti, A. Tigano, and 25 co-authors. 2023. A chromosome-level reference genome for the black-legged kittiwake (<em>Rissa tridactyla</em>), a declining circumpolar seabird. <em>Genome Biol. Evol.</em> 15: 7244646.</p></li>
+        <li class="citation-item"><span class="citation-num">111</span><p class="citation-text">Jackson, L.M., D.-J. Léandri-Breton, S. Whelan, A. Turmaine, S.A. Hatch, D. Grémillet, and K.H. Elliott. 2023. Beyond body condition: experimental evidence that plasma metabolites improve nutritional state measurements in a free-living seabird. <em>Comp. Biochem. Physiol.</em> 285: 111504.</p></li>
+        <li class="citation-item"><span class="citation-num">112</span><p class="citation-text">Tremolada, P., F. Saliu, A. Winkler, and 18 co-authors. 2024. Indigo-dyed cellulose fibers and synthetic polymers in surface-feeding seabird chick regurgitates from the Gulf of Alaska. <em>Mar. Poll. Bull.</em> 203: 116401.</p></li>
+        <li class="citation-item"><span class="citation-num">113</span><p class="citation-text">Manas, F., M. Pineaux, S. Humann-Guilleminot, S.A. Hatch, P. Blanchard, and S. Leclaire. 2024. Offspring's early-life performance varies with father's sperm quality in a genetically monogamous seabird. <em>Behav. Ecol. Sociobiol.</em> 28: 118.</p></li>
+        <li class="citation-item"><span class="citation-num">114</span><p class="citation-text">Tremblay, F., E.S. Choy, S. Whelan, S. Hatch, and K.H. Elliott. 2024. Time-energy budgets outperform dynamic body acceleration in predicting daily energy expenditure in kittiwakes, and estimate a very low cost of gliding flight relative to flapping flight. <em>J. Exp. Biol.</em> 227: jeb247176.</p></li>
+        <li class="citation-item"><span class="citation-num">115</span><p class="citation-text">Orben, R.A., A. Peck-Richardson, A. Piggott, J. Lerczak, G. Wilson, J.C. Garwood, and 37 co-authors. 2025. Collaborating with marine birds to monitor the physical environment within coastal marine protected areas. <em>Oceanography</em>. doi.org/10.5670/oceanog.2025e115.</p></li>
+        <li class="citation-item"><span class="citation-num">116</span><p class="citation-text">Ribeiro, L., P. Blanchard, F. Manas, M. Pineaux, É. Danchin, S.A. Hatch, and S. Leclaire. 2025. An MHC class II supertype confers resistance to a sexually transmitted bacterium in females but not in males in a genetically monogamous seabird. <em>J. Evol. Biol.</em> doi.org/10.1093/jeb/voaf097.</p></li>
+        <li class="citation-item"><span class="citation-num">117</span><p class="citation-text">Thel, L., M. Pineaux, L. Ribeiro, E. Danchin, S. Whelan, S.A. Hatch, P. Blanchard, and S. Leclaire. 2025. Major histocompatibility complex class IIB disassortative mate choice in a genetically monogamous seabird. <em>Proc. R. Soc. B Biol. Sci.</em> 292(2052): 20251265.</p></li>
+      </ol>
+    </section>
+
+  </div><!-- /content-wrap -->
+
+</main>
+
+<!-- === FOOTER === -->
+<footer>
+  <div style="max-width:1000px;margin:0 auto;">
+    <div class="footer-name">Institute for Seabird Research &amp; Conservation</div>
+    <p>Middleton Island Marine Biological Station</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="research-products.html">Research Products</a>
+      <a href="team.html">Team</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="donations.html">Donate</a>
+    </div>
+    <div class="footer-contact">
+      <p>&copy; 2026 ISRC &middot; <a href="mailto:shatch.isrc@gmail.com">shatch.isrc@gmail.com</a></p>
+      <p>12850 Mountain Place, Anchorage, Alaska 99516 &middot; 907-301-6352</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Highlight active decade in sticky nav on scroll
+  const sections = document.querySelectorAll('.decade-section');
+  const links = document.querySelectorAll('.decade-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const id = '#' + entry.target.id;
+        const active = document.querySelector(`.decade-link[href="${id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-140px 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

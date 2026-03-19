@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About the Island - Middleton Island Marine Biological Station</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a2a2e;
+    --sea-deep: #1e3a3f;
+    --sea-mid: #2d5a5e;
+    --sea-light: #4a8a8e;
+    --foam: #c8ddd5;
+    --sand: #e8dfd0;
+    --warm-white: #f5f2ec;
+    --gull-white: #faf9f6;
+    --accent: #c47a3a;
+    --accent-warm: #d4944e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--gull-white);
+    line-height: 1.7;
+  }
+
+  /* Header/Navigation */
+  header {
+    background: var(--gull-white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(26, 42, 46, 0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--sea-deep);
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--sea-mid);
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover, nav a.active { color: var(--accent); }
+
+  /* Main content */
+  main { margin-top: 80px; }
+
+  .page-header {
+    background: linear-gradient(rgba(30, 58, 63, 0.85), rgba(45, 90, 94, 0.85)),
+                url('media/IMG_20190515_164547327-scaled.jpg') center/cover no-repeat;
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  .section-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 2.2rem;
+    color: var(--sea-deep);
+    margin-bottom: 2rem;
+  }
+
+  .section p {
+    font-size: 1rem;
+    color: #4a5a5e;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+  }
+
+  .section-eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--sea-light);
+    margin-bottom: 1rem;
+  }
+
+  /* Two-column layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* Info cards */
+  .info-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+    margin-bottom: 2rem;
+  }
+
+  .info-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--sea-deep);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  /* Highlights section */
+  .highlights {
+    background: var(--warm-white);
+  }
+
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .highlight-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+    border-top: 3px solid var(--sea-light);
+  }
+
+  .highlight-item h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--sea-deep);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  /* FAQ Section */
+  .faq-item {
+    border-bottom: 1px solid var(--foam);
+    padding: 1.5rem 0;
+  }
+
+  .faq-question {
+    font-weight: 500;
+    color: var(--sea-deep);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    position: relative;
+    padding-right: 2rem;
+  }
+
+  .faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.2rem;
+    color: var(--sea-light);
+    transition: transform 0.3s ease;
+  }
+
+  .faq-question.open::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    color: #4a5a5e;
+    line-height: 1.6;
+    padding-left: 1rem;
+    border-left: 2px solid var(--foam);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-answer.open {
+    max-height: 200px;
+    padding-bottom: 1rem;
+  }
+
+  /* Map container */
+  .map-container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--sea-deep);
+    color: rgba(200, 221, 213, 0.8);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--foam);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: var(--foam);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover { color: white; }
+
+  .footer-contact {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(200, 221, 213, 0.2);
+    padding-top: 2rem;
+  }
+
+  .footer-contact a {
+    color: var(--foam);
+    text-decoration: none;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    nav ul {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    main { margin-top: 120px; }
+
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .highlight-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <a href="index.html" class="logo">Middleton Island</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#" class="active">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="research-products.html">Research Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donations.html" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 3px;">Donate</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-header">
+    <h1>About the Island</h1>
+    <p>Sixty miles off the Alaskan coast lies a unique marine field station where history, science, and nature converge.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <div class="two-col">
+        <div>
+          <p class="section-eyebrow">The Setting</p>
+          <h2>A Strategic Location for Marine Science</h2>
+          <p>Middleton Island comprises about 2,200 acres, excluding the supra-tidal lands resulting from the 1964 earthquake. The island lies smack in the middle of the main east-to-west flowing currents in the Gulf of Alaska—the Alaska Stream and Alaska Coastal Current.</p>
+
+          <p>Well-separated from the coast and low-lying itself, the island is little influenced by such factors as orogenic weather (mediated by coastal mountains), variable freshwater inputs (rainfall/glacial runoff) or other processes operating in a near-coastal environment.</p>
+
+          <p>Being situated only a short distance from the steeply sloping edge of the continental shelf, Middleton presents seabirds the option of foraging in either or both of two distinct ecological zones: neritic (continental shelf) and pelagic (deep ocean) marine habitats.</p>
+        </div>
+        <div>
+          <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=Middleton%20Island&t=m&z=12&output=embed&iwloc=near" aria-label="Middleton Island"></iframe>
+          </div>
+          <div class="info-card">
+            <h3>Quick Facts</h3>
+            <p><strong>Location:</strong> 60 miles offshore in north-central Gulf of Alaska</p>
+            <p><strong>Size:</strong> 2,200+ acres</p>
+            <p><strong>Summer Population:</strong> ~15 researchers</p>
+            <p><strong>Winter Population:</strong> 2 caretakers</p>
+            <p><strong>Established:</strong> 1978 (research station)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section highlights">
+    <div class="section-content">
+      <p class="section-eyebrow">What Makes Middleton Special</p>
+      <h2>Islands have mystique, but Middleton is unique</h2>
+      <p style="text-align: center; margin-bottom: 3rem;">To the biologist, all islands are appealing, but some are more amenable than others to research. Middleton Island offers several distinct advantages:</p>
+
+      <div class="highlight-grid">
+        <div class="highlight-item">
+          <h4>A Logistical Paradox</h4>
+          <p>Though uncommonly isolated and remote, Middleton is highly accessible. With the ample and well-maintained airstrip constructed by the Air Force ~65 years ago, a trip to Middleton entails just a 1-hour flight from Anchorage via air taxi.</p>
+        </div>
+
+        <div class="highlight-item">
+          <h4>Truly Oceanic</h4>
+          <p>Middleton Island lies in the middle of the main east-to-west flowing currents in the Gulf of Alaska. Well-separated from the coast, the island is little influenced by near-coastal environmental processes.</p>
+        </div>
+
+        <div class="highlight-item">
+          <h4>Two Oceanic Domains</h4>
+          <p>Being situated near the continental shelf edge, Middleton presents seabirds the option of foraging in both neritic (continental shelf) and pelagic (deep ocean) marine habitats.</p>
+        </div>
+
+        <div class="highlight-item">
+          <h4>Connected but Remote</h4>
+          <p>Thanks to FAA infrastructure, researchers have telephone and internet access. The station has steady AC power supply—amenities unexpected in a remote Alaska field site.</p>
+        </div>
+
+        <div class="highlight-item">
+          <h4>Historic Significance</h4>
+          <p>The island lies within the area affected by the Exxon-Valdez oil spill, serving as a useful control site for evaluating spill effects and responses within Prince William Sound.</p>
+        </div>
+
+        <div class="highlight-item">
+          <h4>Seismic Activity</h4>
+          <p>The 1964 Alaska Earthquake raised the island nearly 4 meters, exposing previously submerged seafloor and creating dramatic changes in bird populations—a natural experiment in progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <p class="section-eyebrow">Geology & History</p>
+      <h2>From Seafloor to Research Station</h2>
+
+      <div class="info-card">
+        <h3>Geological History</h3>
+        <p>Geologically speaking, Middleton Island is thought to be less than 5,000 years old. It comprises the exposed portion of a continental shelf area subject to continuous tectonic uplift. In 1964, the great Alaska Earthquake raised the island nearly 4 meters in the span of a few minutes, exposing previously submerged seafloor at the perimeter and greatly expanding the island's area.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>Cultural History</h3>
+        <p>Oral history documents seasonal use of Middleton by Chugach and Eyak Native peoples, while the first permanent inhabitants were probably settlers engaged in the fox-farming industry in the late 1890s through the 1920s. During WWII, the U.S. Coast Guard built a small communications station on the island, the first of successive U.S. Government operations including the Civil Aeronautics Administration, U.S. Air Force, Federal Aviation Administration, and various wildlife and land management agencies.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>Biological History</h3>
+        <p>Driven partly by changes wrought by the earthquake and partly by large-scale oceanographic factors, bird populations on Middleton are more dynamic than possibly anywhere else in Alaska. The island hosts substantial numbers of kittiwakes, cormorants, gulls, murres and puffins, but no species is stable—huge fluctuations, both up and down, have occurred since regular monitoring began in the 1970s.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section highlights">
+    <div class="section-content">
+      <p class="section-eyebrow">Frequently Asked</p>
+      <h2>Questions & Answers</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Who owns Middleton Island?</div>
+        <div class="faq-answer">Most of the acreage on the island is owned by Chugach Alaska Corporation, one of 13 Alaska Native regional corporations in the state. The Federal Aviation Administration retains some 200 acres in support of radar installations for weather and air traffic monitoring. The privately owned biological station (182 acres) is the other substantial inholding.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Why have wildlife populations on Middleton fluctuated so much?</div>
+        <div class="faq-answer">Since the 1964 Alaska earthquake, former sea cliffs have eroded and vegetation is steadily advancing. This process affects nesting habitat availability. The "first cause" of volatility is thought to be changes in food supply, triggered partly by the earthquake but also reflecting natural and human-induced trends. A marked increase in predators, notably bald eagles, has compounded these effects.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">How's the weather on Middleton?</div>
+        <div class="faq-answer">Many summer days are cool and cloudy (temperatures in the low 50s F), or wet and windy, but balmy days in the 60s (F) can also be expected. In winter it can get quite cold and breezy—winds of 60-80 mph and higher are not uncommon, but the island's maritime setting moderates temperatures and keeps snow accumulation to a minimum.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Do any mammals live on Middleton?</div>
+        <div class="faq-answer">There are no naturally occurring land mammals. However, domestic rabbits were released in the 1950s, and feral bunnies are now ubiquitous. Their numbers decline greatly in winter but rebound quickly in spring. Sea mammals include seals, sea lions, occasional sea otters, and several species of whales.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Can the public visit Middleton?</div>
+        <div class="faq-answer">Yes, there is great potential for environmental education and ecotourism. Occasionally, Audubon Alaska organizes day trips by charter aircraft. For those of ample means, a twin engine air taxi from Anchorage costs about $2,000 each way. Passengers from nature-oriented cruise ships have also visited via skiff.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-name">Institute for Seabird Research & Conservation</div>
+    <p>Middleton Island Marine Biological Station</p>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="#">About</a>
+      <a href="research.html">Research</a>
+      <a href="team.html">Team</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="donations.html">Donate</a>
+    </div>
+
+    <div class="footer-contact">
+      <p>&copy; 2026 ISRC &middot; <a href="mailto:shatch.isrc@gmail.com">shatch.isrc@gmail.com</a></p>
+      <p>12850 Mountain Place, Anchorage, Alaska 99516 &middot; 907-301-6352</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(element) {
+  const answer = element.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+
+  // Close all other FAQ items
+  document.querySelectorAll('.faq-answer').forEach(item => {
+    item.classList.remove('open');
+  });
+  document.querySelectorAll('.faq-question').forEach(item => {
+    item.classList.remove('open');
+  });
+
+  // Toggle current item
+  if (!isOpen) {
+    answer.classList.add('open');
+    element.classList.add('open');
+  }
+}
+</script>
+
+</body>
+</html>

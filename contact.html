@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Middleton Island Marine Biological Station</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a2a2e;
+    --sea-deep: #1e3a3f;
+    --sea-mid: #2d5a5e;
+    --sea-light: #4a8a8e;
+    --foam: #c8ddd5;
+    --sand: #e8dfd0;
+    --warm-white: #f5f2ec;
+    --gull-white: #faf9f6;
+    --accent: #c47a3a;
+    --accent-warm: #d4944e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--gull-white);
+    line-height: 1.7;
+  }
+
+  /* Header/Navigation */
+  header {
+    background: var(--gull-white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(26, 42, 46, 0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--sea-deep);
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--sea-mid);
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover, nav a.active { color: var(--accent); }
+
+  /* Main content */
+  main { margin-top: 80px; }
+
+  .page-header {
+    background: linear-gradient(135deg, var(--sea-deep) 0%, var(--sea-mid) 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  .section-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 2.2rem;
+    color: var(--sea-deep);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .section-eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--sea-light);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  /* Contact grid */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .contact-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+    text-align: center;
+  }
+
+  .contact-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--sea-deep);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .contact-info {
+    text-align: left;
+    margin: 1rem 0;
+  }
+
+  .contact-info p {
+    margin-bottom: 0.8rem;
+    color: #4a5a5e;
+  }
+
+  .contact-info strong {
+    color: var(--sea-deep);
+    font-weight: 500;
+  }
+
+  .contact-info a {
+    color: var(--sea-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .contact-info a:hover {
+    color: var(--accent);
+  }
+
+  /* Map section */
+  .map-section {
+    background: var(--warm-white);
+  }
+
+  .map-container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+    margin-bottom: 2rem;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+  }
+
+  .map-note {
+    text-align: center;
+    font-style: italic;
+    color: var(--sea-mid);
+    font-size: 0.9rem;
+  }
+
+  /* Research opportunities */
+  .opportunities {
+    background: white;
+    border-radius: 8px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+    margin-top: 2rem;
+  }
+
+  .opportunities h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--sea-deep);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+
+  .opportunities p {
+    color: #4a5a5e;
+    margin-bottom: 1rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+  }
+
+  .cta-button:hover {
+    background: var(--accent-warm);
+    transform: translateY(-2px);
+  }
+
+  /* Contact form */
+  .contact-form {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--sea-deep);
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--foam);
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--sea-light);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .submit-btn {
+    background: var(--sea-deep);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 3px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .submit-btn:hover {
+    background: var(--sea-mid);
+    transform: translateY(-1px);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--sea-deep);
+    color: rgba(200, 221, 213, 0.8);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--foam);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: var(--foam);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover { color: white; }
+
+  .footer-contact {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(200, 221, 213, 0.2);
+    padding-top: 2rem;
+  }
+
+  .footer-contact a {
+    color: var(--foam);
+    text-decoration: none;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    nav ul {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    main { margin-top: 120px; }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <a href="index.html" class="logo">Middleton Island</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="research-products.html">Research Products</a></li>
+        <li><a href="#" class="active">Contact</a></li>
+        <li><a href="donations.html" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 3px;">Donate</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-header">
+    <h1>Get in Touch</h1>
+    <p>Connect with our team to learn about research opportunities, collaboration, or how you can support our mission.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <p class="section-eyebrow">Contact Information</p>
+      <h2>How to Reach Us</h2>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>General Inquiries</h3>
+          <div class="contact-info">
+            <p><strong>Institute for Seabird Research and Conservation</strong></p>
+            <p>12850 Mountain Place<br>
+            Anchorage, Alaska 99516</p>
+
+            <p><strong>Phone:</strong> <a href="tel:907-301-6352">907-301-6352</a></p>
+            <p><strong>Email:</strong> <a href="mailto:shatch.isrc@gmail.com">shatch.isrc@gmail.com</a></p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3>Research Collaborations</h3>
+          <div class="contact-info">
+            <p><strong>Scott Hatch, Ph.D.</strong><br>
+            <em>Founder & Research Director</em></p>
+
+            <p>For inquiries about:</p>
+            <ul style="margin: 0.5rem 0; padding-left: 1.2rem; color: #4a5a5e;">
+              <li>Research partnerships</li>
+              <li>Graduate student opportunities</li>
+              <li>Field station logistics</li>
+              <li>Long-term datasets</li>
+            </ul>
+
+            <p><strong>Email:</strong> <a href="mailto:shatch.isrc@gmail.com">shatch.isrc@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="opportunities">
+        <h3>Conduct Research on the Island</h3>
+        <p>Scott and our team of researchers have decades of experience working on Middleton Island. We welcome collaborations with scientists studying seabird ecology, marine ecosystems, climate change impacts, and related fields.</p>
+
+        <p>The station offers unique opportunities for:</p>
+        <ul style="margin: 1rem 0; padding-left: 1.2rem; color: #4a5a5e;">
+          <li>Long-term population monitoring studies</li>
+          <li>Experimental manipulations in controlled environments</li>
+          <li>Behavioral and physiological research</li>
+          <li>Student training and career development</li>
+          <li>Cross-disciplinary ecosystem research</li>
+        </ul>
+
+        <a href="mailto:shatch.isrc@gmail.com?subject=Research%20Collaboration%20Inquiry" class="cta-button">Discuss Research Opportunities</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section map-section">
+    <div class="section-content">
+      <p class="section-eyebrow">Location</p>
+      <h2>Find Middleton Island</h2>
+
+      <div class="map-container">
+        <iframe src="https://maps.google.com/maps?q=middleton%20island&t=m&z=6&output=embed&iwloc=near" aria-label="Middleton Island location map"></iframe>
+      </div>
+
+      <p class="map-note">Middleton Island is located approximately 60 miles offshore from the south-central Alaskan coast in the Gulf of Alaska. The island is accessible only by aircraft via the former Air Force airstrip.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <div class="contact-grid">
+        <div>
+          <p class="section-eyebrow">Send a Message</p>
+          <h2 style="text-align: left; font-size: 1.8rem;">Contact Form</h2>
+          <p style="margin-bottom: 2rem;">Have a question about our research, want to discuss collaboration, or interested in supporting our mission? We'd love to hear from you.</p>
+        </div>
+
+        <div class="contact-form">
+          <form action="#" method="post" onsubmit="handleFormSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <input type="text" id="subject" name="subject" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inquiry-type">Type of Inquiry</label>
+              <select id="inquiry-type" name="inquiry-type" style="width: 100%; padding: 0.8rem 1rem; border: 1.5px solid var(--foam); border-radius: 3px; font-family: inherit; font-size: 0.9rem; color: var(--ink); background: white; outline: none;">
+                <option value="">Select an option</option>
+                <option value="research">Research Collaboration</option>
+                <option value="student">Student Opportunities</option>
+                <option value="media">Media/Press Inquiry</option>
+                <option value="donation">Donation/Support</option>
+                <option value="general">General Information</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" required placeholder="Please provide details about your inquiry..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-name">Institute for Seabird Research & Conservation</div>
+    <p>Middleton Island Marine Biological Station</p>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="team.html">Team</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="#">Contact</a>
+      <a href="donations.html">Donate</a>
+    </div>
+
+    <div class="footer-contact">
+      <p>&copy; 2026 ISRC &middot; <a href="mailto:shatch.isrc@gmail.com">shatch.isrc@gmail.com</a></p>
+      <p>12850 Mountain Place, Anchorage, Alaska 99516 &middot; 907-301-6352</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function handleFormSubmit(event) {
+  event.preventDefault();
+
+  // Get form data
+  const formData = new FormData(event.target);
+  const name = formData.get('name');
+  const email = formData.get('email');
+  const subject = formData.get('subject');
+  const inquiryType = formData.get('inquiry-type');
+  const message = formData.get('message');
+
+  // Create mailto link (you can replace this with actual form processing)
+  let emailSubject = subject;
+  if (inquiryType) {
+    emailSubject = `[${inquiryType.toUpperCase()}] ${subject}`;
+  }
+
+  const mailtoLink = `mailto:shatch.isrc@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nInquiry Type: ${inquiryType || 'Not specified'}\n\nMessage:\n${message}`
+  )}`;
+
+  // Open mail client
+  window.location.href = mailtoLink;
+
+  // Reset form
+  event.target.reset();
+
+  // Show confirmation
+  alert('Your email client should now open with the message pre-filled. Thank you for contacting us!');
+}
+</script>
+
+</body>
+</html>

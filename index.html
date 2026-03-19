@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Middleton Island Marine Biological Station</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a2a2e;
+    --sea-deep: #1e3a3f;
+    --sea-mid: #2d5a5e;
+    --sea-light: #4a8a8e;
+    --foam: #c8ddd5;
+    --sand: #e8dfd0;
+    --warm-white: #f5f2ec;
+    --gull-white: #faf9f6;
+    --accent: #c47a3a;
+    --accent-warm: #d4944e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--gull-white);
+    line-height: 1.7;
+  }
+
+  /* Header/Navigation */
+  header {
+    background: var(--gull-white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(26, 42, 46, 0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--sea-deep);
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--sea-mid);
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover, nav a.active { color: var(--accent); }
+
+  /* Main content spacing for fixed header */
+  main { margin-top: 80px; }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(30, 58, 63, 0.85), rgba(45, 90, 94, 0.85)),
+                url('media/IMG_20190717_150630414_HDR-scaled.jpg') center/cover no-repeat;
+    color: white;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(30, 58, 63, 0.3) 0%, rgba(45, 90, 94, 0.3) 100%);
+  }
+
+  .hero-content {
+    max-width: 800px;
+    padding: 2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: var(--accent-warm);
+    transform: translateY(-2px);
+  }
+
+  /* Stats Section */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: -3rem auto 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(26, 42, 46, 0.1);
+    position: relative;
+    z-index: 10;
+  }
+
+  .stat {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: var(--sea-deep);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--sea-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Content Sections */
+  .section {
+    padding: 5rem 2rem;
+  }
+
+  .section-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: var(--sea-deep);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-eyebrow {
+    text-align: center;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--sea-light);
+    margin-bottom: 1rem;
+  }
+
+  .section p {
+    font-size: 1rem;
+    color: #4a5a5e;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Team Grid */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .team-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(26, 42, 46, 0.1);
+  }
+
+  .team-photo-small {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    border: 2px solid var(--foam);
+    display: block;
+  }
+
+  .team-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--sea-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .team-card .role {
+    font-size: 0.85rem;
+    color: var(--sea-light);
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .team-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  /* History Timeline */
+  .history-section {
+    background: var(--warm-white);
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 3rem auto 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--foam);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 120px;
+  }
+
+  .timeline-year {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    background: var(--sea-deep);
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .timeline-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--sea-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--sea-deep);
+    color: rgba(200, 221, 213, 0.8);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--foam);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: var(--foam);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover { color: white; }
+
+  .footer-contact {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(200, 221, 213, 0.2);
+    padding-top: 2rem;
+  }
+
+  .footer-contact a {
+    color: var(--foam);
+    text-decoration: none;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    nav ul {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    main { margin-top: 120px; }
+
+    .stats {
+      grid-template-columns: 1fr;
+      margin: -2rem 1rem 0;
+    }
+
+    .timeline-item {
+      padding-left: 0;
+      text-align: center;
+    }
+
+    .timeline::before { display: none; }
+
+    .timeline-year {
+      position: relative;
+      width: auto;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .footer-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <a href="#" class="logo">Middleton Island</a>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="research-products.html">Research Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donations.html" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 3px;">Donate</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>The Middleton Island<br>Marine Biological Station</h1>
+      <p>A unique facility for ecosystem research in the Gulf of Alaska, where cutting-edge seabird science meets Cold War history on a remote, tectonically active island.</p>
+      <a href="donations.html" class="cta-button">Support Our Research</a>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">50K+</div>
+      <div class="stat-label">Seabirds Nesting on Middleton Island</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">182</div>
+      <div class="stat-label">Acres Comprising the Research Station</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">12</div>
+      <div class="stat-label">Average Island Population in Summer (Winter: 2)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">9</div>
+      <div class="stat-label">Former U.S. Air Force Buildings Repurposed for Seabird Research</div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section-content">
+      <p class="section-eyebrow">About the Island</p>
+      <h2>A Strategic Location for Marine Science</h2>
+      <p>Middleton Island, situated about 60 miles off the coast in the north-central Gulf of Alaska, is home to a marine field station unlike any other in the world. Research and monitoring conducted there since 1978 is furnishing data relevant to marine ecosystem management in the Gulf and the northeastern Pacific generally.</p>
+
+      <p>The island itself lies smack in the middle of the main east-to-west flowing currents in the Gulf of Alaska. Well-separated from the coast, the island is little influenced by such factors as orogenic weather or variable freshwater inputs, making it an ideal location for oceanic research.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <p class="section-eyebrow">Meet the Team</p>
+      <h2>Leading Researchers</h2>
+      <p>Our international team of scientists brings decades of expertise to seabird research and marine ecosystem studies.</p>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="media/scott_hatch.jpg" alt="Scott Hatch" class="team-photo-small">
+          <h3>Scott Hatch, Ph.D.</h3>
+          <p class="role">Founder, Institute for Seabird Research and Conservation</p>
+          <p>Scott has 37 years of experience with federal agencies in Alaska and has been working at Middleton since 1978. As the self-appointed "Mayor of Middleton Island," he has overseen the transformation of Cold War infrastructure into a world-class research facility.</p>
+        </div>
+
+        <div class="team-card">
+          <img src="media/Kyle_Elliott.jpg" alt="Kyle Elliott" class="team-photo-small">
+          <h3>Kyle Elliott, Ph.D.</h3>
+          <p class="role">Professor/Canada Research Chair, McGill University</p>
+          <p>Kyle completed his PhD using data collected at Middleton and has been hooked ever since. His research focuses on tracking kittiwakes, auklets, puffins and gulls to answer behavioral, physiological and ecological questions.</p>
+        </div>
+
+        <div class="team-card">
+          <img src="media/Morgran_Benowitz-Fredericks.jpg" alt="Morgan Benowitz-Fredericks" class="team-photo-small">
+          <h3>Morgan Benowitz-Fredericks, Ph.D.</h3>
+          <p class="role">Professor, Bucknell University</p>
+          <p>Morgan's work capitalizes on Middleton's incredible potential for experimental research on free-living seabirds, exploring the physiology and endocrinology of chick development and life-history of kittiwakes.</p>
+        </div>
+
+        <div class="team-card">
+          <img src="media/Sarah_Leclaire.jpg" alt="Sarah Leclaire" class="team-photo-small">
+          <h3>Sarah Leclaire, Ph.D.</h3>
+          <p class="role">Research Scientist, CNRS, France</p>
+          <p>Sarah is a behavioral ecologist with particular interest in mate choice in seabirds. Her work on Middleton focuses on immunogenetic-based mate choice in black-legged kittiwakes and associated sexual signals.</p>
+        </div>
+
+        <div class="team-card">
+          <img src="media/Akiko_Shoji.jpg" alt="Akiko Shoji" class="team-photo-small">
+          <h3>Akiko Shoji, Ph.D.</h3>
+          <p class="role">Research Scientist & Professor, University of Tsukuba, Japan</p>
+          <p>Akiko is a behavioral ecologist with particular interest in seabirds and birds of prey. She collaborates with the Middleton Island team on various research projects studying avian behavior and ecology.</p>
+        </div>
+
+    <div class="team-card">
+          <img src="media/Shannon_Whelan.jpg" alt="Shannon Whelan" class="team-photo-small">
+          <h3>Shannon Whelan, Ph.D.</h3>
+          <p class="role">Science Director, Institute for Seabird Research and Conservation (ISRC)</p>
+          <p>Shannon leads the Core Research Program at ISRC, overseeing logistics and monitoring efforts at the Middleton Island research station. Her research is focused on long-term monitoring, biologging, and endocrinology.</p>
+        </div>
+
+      </div>
+    </div>
+
+
+  </section>
+
+
+
+  <section class="section history-section">
+    <div class="section-content">
+      <p class="section-eyebrow">Historical Timeline</p>
+      <h2>From Military Base to Research Station</h2>
+      <p>The course of biological investigations on Middleton is inextricably tied to the island's unique cultural and geological history.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">1956</div>
+          <div class="timeline-content">
+            <h4>First Biological Survey</h4>
+            <p>Robert Rausch conducts an inaugural biological reconnaissance, documenting "several thousand" kittiwakes and about 400 murres, establishing the earliest baseline of seabird observations available for any Alaska island.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1964</div>
+          <div class="timeline-content">
+            <h4>The Great Alaska Earthquake</h4>
+            <p>The earthquake raises the island nearly 4 meters in minutes, exposing previously submerged seafloor and greatly expanding the island's area, fundamentally changing its ecology.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1978</div>
+          <div class="timeline-content">
+            <h4>Intensive Research Begins</h4>
+            <p>Scott Hatch arrives for a full-season effort (April-August) as part of OCSEAP, establishing permanent plots for population monitoring. The kittiwake population reaches approximately 150,000 individuals.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1986</div>
+          <div class="timeline-content">
+            <h4>Long-term Studies Launch</h4>
+            <p>Sustained, intensive bird research begins with mark-recapture studies of adult survival in black-legged kittiwakes and breeding studies for multiple seabird species.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1995</div>
+          <div class="timeline-content">
+            <h4>"The Tower" Age Begins</h4>
+            <p>Enhancement of derelict Air Force radar towers for research purposes begins. Novel artificial "cliff" habitats are developed, enabling controlled feeding experiments and behavioral studies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-content" style="text-align: center;">
+      <p class="section-eyebrow">Support Our Mission</p>
+      <h2>Help Protect This Living Laboratory</h2>
+      <p>Field operations at Middleton are part of Gulf Watch Alaska and receive funding mainly through cooperative agreements. But making ends meet budget-wise is a perennial challenge. Your tax-deductible contribution helps grow a permanent endowment fund for facility maintenance and core monitoring programs.</p>
+      <a href="donations.html" class="cta-button" style="margin-top: 1rem;">Make a Donation</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-name">Institute for Seabird Research & Conservation</div>
+    <p>Middleton Island Marine Biological Station</p>
+
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="team.html">Team</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="donations.html">Donate</a>
+    </div>
+
+    <div class="footer-contact">
+      <p>&copy; 2026 ISRC &middot; <a href="mailto:shatch.isrc@gmail.com">shatch.isrc@gmail.com</a></p>
+      <p>12850 Mountain Place, Anchorage, Alaska 99516 &middot; 907-301-6352</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

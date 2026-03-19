@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Middleton Island Marine Biological Station</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a2a2e;
+    --sea-deep: #1e3a3f;
+    --sea-mid: #2d5a5e;
+    --sea-light: #4a8a8e;
+    --foam: #c8ddd5;
+    --sand: #e8dfd0;
+    --warm-white: #f5f2ec;
+    --gull-white: #faf9f6;
+    --accent: #c47a3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--gull-white);
+    line-height: 1.7;
+  }
+
+  /* === NAV === */
+  header {
+    background: var(--gull-white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(26,42,46,0.08);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--sea-deep);
+    text-decoration: none;
+  }
+
+  nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+  nav ul li { list-style: none; }
+  nav a {
+    text-decoration: none;
+    color: var(--sea-mid);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  nav a:hover, nav a.active { color: var(--accent); }
+
+  main { margin-top: 72px; }
+
+  /* === PAGE HEADER === */
+  .page-hero {
+    background: linear-gradient(rgba(30,58,63,0.82), rgba(45,90,94,0.82)),
+                url('media/IMG_20190708_204123086_HDR-scaled.jpg') center/cover no-repeat;
+    color: white;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* === CATEGORY CARDS === */
+  .category-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    height: 380px;
+  }
+
+  .cat-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+  }
+
+  .cat-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .cat-card:hover img { transform: scale(1.06); }
+
+  .cat-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(20,40,44,0.85) 0%, rgba(20,40,44,0.3) 60%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    transition: background 0.3s ease;
+  }
+
+  .cat-card:hover .cat-overlay {
+    background: linear-gradient(to top, rgba(20,40,44,0.92) 0%, rgba(20,40,44,0.5) 60%, rgba(20,40,44,0.1) 100%);
+  }
+
+  .cat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--foam);
+    margin-bottom: 0.4rem;
+  }
+
+  .cat-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  .cat-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+    max-width: 280px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .cat-card:hover .cat-desc {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cat-arrow {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--foam);
+    letter-spacing: 0.05em;
+  }
+
+  /* === GALLERY SECTIONS === */
+  .gallery-section {
+    padding: 4rem 2rem;
+    scroll-margin-top: 80px;
+  }
+
+  .gallery-section:nth-child(even) { background: var(--warm-white); }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--sea-light);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .gallery-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--sea-deep);
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .gallery-section .section-desc {
+    text-align: center;
+    color: #4a5a5e;
+    font-size: 1rem;
+    max-width: 580px;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* === PHOTO GRID === */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .photo-thumb {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+    background: var(--sand);
+  }
+
+  .photo-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+
+  .photo-thumb:hover img { transform: scale(1.07); }
+
+  .photo-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20,40,44,0);
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    transition: background 0.3s ease;
+  }
+
+  .photo-thumb:hover .photo-thumb-overlay {
+    background: rgba(20,40,44,0.45);
+  }
+
+  .photo-thumb-caption {
+    color: white;
+    font-size: 0.8rem;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    line-height: 1.4;
+  }
+
+  .photo-thumb:hover .photo-thumb-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === LIGHTBOX === */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,20,22,0.96);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightbox-img {
+    max-width: 88vw;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .lightbox-caption {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .lightbox-counter {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+  }
+
+  .lb-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 2001;
+  }
+
+  .lb-btn:hover { background: rgba(255,255,255,0.2); }
+  .lb-prev { left: 1.5rem; }
+  .lb-next { right: 1.5rem; }
+
+  .lb-close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 2001;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .lb-close:hover { color: white; }
+
+  /* === FOOTER === */
+  footer {
+    background: var(--sea-deep);
+    color: rgba(200,221,213,0.8);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--foam);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a { color: var(--foam); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .footer-links a:hover { color: white; }
+
+  .footer-contact {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(200,221,213,0.2);
+    padding-top: 2rem;
+  }
+
+  .footer-contact a { color: var(--foam); text-decoration: none; }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .header-content { flex-direction: column; gap: 1rem; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    main { margin-top: 120px; }
+
+    .category-nav {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .cat-card { height: 220px; }
+    .cat-desc { opacity: 1; transform: none; }
+
+    .photo-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.5rem; }
+
+    .lb-prev { left: 0.5rem; }
+    .lb-next { right: 0.5rem; }
+
+    .footer-links { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- === NAV === -->
+<header>
+  <div class="header-content">
+    <a href="index.html" class="logo">Middleton Island</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="research-products.html">Research Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donations.html" style="background:var(--accent);color:white;padding:0.4rem 1rem;border-radius:3px;">Donate</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- === PAGE HEADER === -->
+  <section class="page-hero">
+    <h1>Photo Gallery</h1>
+    <p>Visual stories from Middleton Island — the people, the place, and the science.</p>
+  </section>
+
+  <!-- === CATEGORY CARDS === -->
+  <div class="category-nav">
+
+    <a href="#people" class="cat-card">
+      <img src="media/G0020135.jpg" alt="People">
+      <div class="cat-overlay">
+        <p class="cat-label">Gallery</p>
+        <h2 class="cat-title">People</h2>
+        <p class="cat-desc">Meet the team and students who conduct research at Middleton Island.</p>
+        <span class="cat-arrow">View photos ↓</span>
+      </div>
+    </a>
+
+    <a href="#island" class="cat-card">
+      <img src="media/IMG_20190708_204123086_HDR-scaled.jpg" alt="The Island">
+      <div class="cat-overlay">
+        <p class="cat-label">Gallery</p>
+        <h2 class="cat-title">The Island</h2>
+        <p class="cat-desc">Explore the beauty and unique landscape of Middleton Island.</p>
+        <span class="cat-arrow">View photos ↓</span>
+      </div>
+    </a>
+
+    <a href="#research" class="cat-card">
+      <img src="media/image-7.jpg" alt="Research">
+      <div class="cat-overlay">
+        <p class="cat-label">Gallery</p>
+        <h2 class="cat-title">Research</h2>
+        <p class="cat-desc">A look at the fieldwork and science happening on the island.</p>
+        <span class="cat-arrow">View photos ↓</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- === PEOPLE === -->
+  <section class="gallery-section" id="people">
+    <div class="section-inner">
+      <p class="section-eyebrow">Gallery — People</p>
+      <h2>The Team</h2>
+      <p class="section-desc">The researchers, students, and collaborators who make Middleton Island a hub of scientific discovery.</p>
+
+      <div class="photo-grid" data-gallery="people">
+        <div class="photo-thumb" data-caption="The Middleton Island research team" data-src="media/G0020135.jpg">
+          <img src="media/G0020135.jpg" alt="Research team">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Research team</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Scott Hatch, Ph.D. — Founder, ISRC" data-src="media/scott_hatch.jpg">
+          <img src="media/scott_hatch.jpg" alt="Scott Hatch">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Scott Hatch, Ph.D.</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Kyle Elliott, Ph.D. — McGill University" data-src="media/Kyle_Elliott.jpg">
+          <img src="media/Kyle_Elliott.jpg" alt="Kyle Elliott">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Kyle Elliott, Ph.D.</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Morgan Benowitz-Fredericks, Ph.D. — Bucknell University" data-src="media/Morgran_Benowitz-Fredericks.jpg">
+          <img src="media/Morgran_Benowitz-Fredericks.jpg" alt="Morgan Benowitz-Fredericks">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Morgan Benowitz-Fredericks, Ph.D.</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Sarah Leclaire, Ph.D. — CNRS, France" data-src="media/Sarah_Leclaire.jpg">
+          <img src="media/Sarah_Leclaire.jpg" alt="Sarah Leclaire">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Sarah Leclaire, Ph.D.</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Akiko Shoji, Ph.D. — University of Tsukuba" data-src="media/Akiko_Shoji.jpg">
+          <img src="media/Akiko_Shoji.jpg" alt="Akiko Shoji">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Akiko Shoji, Ph.D.</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Yumi Arimitsu, Ph.D. — Ocean Bight LLC" data-src="media/Arimitsu_biopic.jpg">
+          <img src="media/Arimitsu_biopic.jpg" alt="Yumi Arimitsu">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Yumi Arimitsu, Ph.D.</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Naya Sena — University of Hokkaido" data-src="media/naya_sena.jpg">
+          <img src="media/naya_sena.jpg" alt="Naya Sena">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Naya Sena</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Shannon Whelan — McGill University" data-src="media/Shannon_Whelan.jpg">
+          <img src="media/Shannon_Whelan.jpg" alt="Shannon Whelan">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Shannon Whelan</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Sierra Pete — Bucknell University" data-src="media/Sierra_Pete.jpg">
+          <img src="media/Sierra_Pete.jpg" alt="Sierra Pete">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Sierra Pete</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Field work on Middleton Island" data-src="media/image-32.jpg">
+          <img src="media/image-32.jpg" alt="Field work">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Field work</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Laboratory analysis" data-src="media/image-33.jpg">
+          <img src="media/image-33.jpg" alt="Lab work">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Laboratory analysis</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === ISLAND === -->
+  <section class="gallery-section" id="island">
+    <div class="section-inner">
+      <p class="section-eyebrow">Gallery — The Island</p>
+      <h2>Middleton Island</h2>
+      <p class="section-desc">Stunning landscapes, dramatic skies, and the unique geology of one of Alaska's most remote research sites.</p>
+
+      <div class="photo-grid" data-gallery="island">
+        <div class="photo-thumb" data-caption="Middleton Island at golden hour" data-src="media/IMG_20190708_204123086_HDR-scaled.jpg">
+          <img src="media/IMG_20190708_204123086_HDR-scaled.jpg" alt="Golden hour">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Golden hour</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Coastal habitat and nesting cliffs" data-src="media/IMG_20190629_125010062-scaled.jpg">
+          <img src="media/IMG_20190629_125010062-scaled.jpg" alt="Coastal habitat">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Coastal habitat</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="The research station buildings" data-src="media/IMG_20190515_164547327-scaled.jpg">
+          <img src="media/IMG_20190515_164547327-scaled.jpg" alt="Research station">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Research station</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Island vista" data-src="media/IMG_20190717_150630414_HDR-scaled.jpg">
+          <img src="media/IMG_20190717_150630414_HDR-scaled.jpg" alt="Island vista">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Island vista</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Scientific infrastructure" data-src="media/IMG_20190622_095026621_HDR-scaled.jpg">
+          <img src="media/IMG_20190622_095026621_HDR-scaled.jpg" alt="Scientific infrastructure">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Scientific infrastructure</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Summer evening on the island" data-src="media/IMG_20190806_212113762-scaled.jpg">
+          <img src="media/IMG_20190806_212113762-scaled.jpg" alt="Summer evening">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Summer evening</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Island terrain" data-src="media/IMG_20190520_175228221-scaled.jpg">
+          <img src="media/IMG_20190520_175228221-scaled.jpg" alt="Island terrain">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Island terrain</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="HDR landscape" data-src="media/IMG_20190524_210026631_HDR-scaled.jpg">
+          <img src="media/IMG_20190524_210026631_HDR-scaled.jpg" alt="Landscape">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Island landscape</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Aerial view of the coastline" data-src="media/IMG_20190723_172306832_BURST000_COVER-scaled.jpg">
+          <img src="media/IMG_20190723_172306832_BURST000_COVER-scaled.jpg" alt="Coastline">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Coastline</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Midnight light" data-src="media/IMG_20190602_225123630-scaled.jpg">
+          <img src="media/IMG_20190602_225123630-scaled.jpg" alt="Midnight light">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Midnight light</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="HDR coastal view" data-src="media/IMG_20190605_161316800_HDR-scaled.jpg">
+          <img src="media/IMG_20190605_161316800_HDR-scaled.jpg" alt="Coastal view">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Coastal view</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Island in summer" data-src="media/IMG_20190709_151314447-scaled.jpg">
+          <img src="media/IMG_20190709_151314447-scaled.jpg" alt="Island summer">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Island in summer</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Evening view" data-src="media/IMG_20190517_215826792_HDR-scaled.jpg">
+          <img src="media/IMG_20190517_215826792_HDR-scaled.jpg" alt="Evening view">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Evening view</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Sunset over the Gulf" data-src="media/IMG_20190730_095739841-scaled.jpg">
+          <img src="media/IMG_20190730_095739841-scaled.jpg" alt="Sunset">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Sunset over the Gulf</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === RESEARCH === -->
+  <section class="gallery-section" id="research">
+    <div class="section-inner">
+      <p class="section-eyebrow">Gallery — Research</p>
+      <h2>Science in Action</h2>
+      <p class="section-desc">From seabird banding to forage fish monitoring, a look at the fieldwork that makes Middleton Island unique.</p>
+
+      <div class="photo-grid" data-gallery="research">
+        <div class="photo-thumb" data-caption="Tufted puffins nesting on Middleton Island" data-src="media/image-7.jpg">
+          <img src="media/image-7.jpg" alt="Tufted puffins">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Tufted puffins</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Seabird monitoring at the tower" data-src="media/image-9.jpg">
+          <img src="media/image-9.jpg" alt="Seabird monitoring">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Seabird monitoring</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Wildlife documentation" data-src="media/image-30.jpg">
+          <img src="media/image-30.jpg" alt="Wildlife documentation">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Wildlife documentation</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Monitoring equipment and data collection" data-src="media/image-5.jpg">
+          <img src="media/image-5.jpg" alt="Monitoring equipment">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Monitoring equipment</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Research in the field" data-src="media/image-6.jpg">
+          <img src="media/image-6.jpg" alt="Field research">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Field research</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Seabird ecology studies" data-src="media/image-8.jpg">
+          <img src="media/image-8.jpg" alt="Seabird ecology">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Seabird ecology</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Marine ecosystem research" data-src="media/image-11.jpg">
+          <img src="media/image-11.jpg" alt="Ecosystem research">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Marine ecosystem research</p></div>
+        </div>
+        <div class="photo-thumb" data-caption="Long-term monitoring data collection" data-src="media/image-32.jpg">
+          <img src="media/image-32.jpg" alt="Data collection">
+          <div class="photo-thumb-overlay"><p class="photo-thumb-caption">Data collection</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- === LIGHTBOX === -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Next">&#8594;</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="lb-img" src="" alt="">
+    <p class="lightbox-caption" id="lb-caption"></p>
+    <p class="lightbox-counter" id="lb-counter"></p>
+  </div>
+</div>
+
+<!-- === FOOTER === -->
+<footer>
+  <div class="footer-content" style="max-width:1000px;margin:0 auto;">
+    <div class="footer-name">Institute for Seabird Research &amp; Conservation</div>
+    <p>Middleton Island Marine Biological Station</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="team.html">Team</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="donations.html">Donate</a>
+    </div>
+    <div class="footer-contact">
+      <p>&copy; 2026 ISRC &middot; <a href="mailto:shatch.isrc@gmail.com">shatch.isrc@gmail.com</a></p>
+      <p>12850 Mountain Place, Anchorage, Alaska 99516 &middot; 907-301-6352</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Build a flat list of images per gallery section
+  let currentImages = [];
+  let currentIndex = 0;
+
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lb-img');
+  const lbCaption = document.getElementById('lb-caption');
+  const lbCounter = document.getElementById('lb-counter');
+
+  function openLightbox(thumbs, index) {
+    currentImages = Array.from(thumbs).map(t => ({
+      src: t.dataset.src,
+      caption: t.dataset.caption
+    }));
+    currentIndex = index;
+    showImage();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showImage() {
+    const item = currentImages[currentIndex];
+    lbImg.src = item.src;
+    lbImg.alt = item.caption;
+    lbCaption.textContent = item.caption;
+    lbCounter.textContent = (currentIndex + 1) + ' / ' + currentImages.length;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+
+  document.getElementById('lb-prev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    showImage();
+  });
+
+  document.getElementById('lb-next').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    showImage();
+  });
+
+  // Click on thumbnail
+  document.querySelectorAll('.photo-grid').forEach(grid => {
+    const thumbs = grid.querySelectorAll('.photo-thumb');
+    thumbs.forEach((thumb, i) => {
+      thumb.addEventListener('click', () => openLightbox(thumbs, i));
+    });
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      showImage();
+    }
+    if (e.key === 'ArrowRight') {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      showImage();
+    }
+  });
+
+  // Click outside image to close
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+</script>
+
+</body>
+</html>

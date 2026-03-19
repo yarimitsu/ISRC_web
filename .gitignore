@@ -1,0 +1,10 @@
+# Archived/draft files
+archive/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp

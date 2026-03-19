@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research - Middleton Island Marine Biological Station</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a2a2e;
+    --sea-deep: #1e3a3f;
+    --sea-mid: #2d5a5e;
+    --sea-light: #4a8a8e;
+    --foam: #c8ddd5;
+    --sand: #e8dfd0;
+    --warm-white: #f5f2ec;
+    --gull-white: #faf9f6;
+    --accent: #c47a3a;
+    --accent-warm: #d4944e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--gull-white);
+    line-height: 1.7;
+  }
+
+  /* Header/Navigation */
+  header {
+    background: var(--gull-white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(26, 42, 46, 0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--sea-deep);
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--sea-mid);
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover, nav a.active { color: var(--accent); }
+
+  /* Main content */
+  main { margin-top: 80px; }
+
+  .page-header {
+    background: linear-gradient(135deg, var(--sea-deep) 0%, var(--sea-mid) 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  .section-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 2.2rem;
+    color: var(--sea-deep);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .section-eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--sea-light);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .section p {
+    color: #4a5a5e;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+  }
+
+  /* Research areas grid */
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .research-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+    border-top: 3px solid var(--sea-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .research-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(26, 42, 46, 0.1);
+  }
+
+  .research-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--sea-deep);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+
+  .research-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  /* Timeline */
+  .timeline-section {
+    background: var(--warm-white);
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 3rem auto 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--foam);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 120px;
+  }
+
+  .timeline-year {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    background: var(--sea-deep);
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .timeline-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--sea-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+  /* Student testimonials */
+  .testimonials {
+    background: white;
+    border-radius: 8px;
+    padding: 3rem;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+    margin: 2rem 0;
+  }
+
+  .testimonial {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: var(--warm-white);
+    border-radius: 6px;
+    border-left: 4px solid var(--sea-light);
+  }
+
+  .testimonial:last-child {
+    margin-bottom: 0;
+  }
+
+  .testimonial-text {
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5a5e;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-author {
+    font-weight: 500;
+    color: var(--sea-deep);
+    font-size: 0.9rem;
+  }
+
+  .testimonial-affiliation {
+    font-size: 0.85rem;
+    color: var(--sea-light);
+  }
+
+  /* Stats highlight */
+  .stats-highlight {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    background: var(--sea-deep);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    margin: 3rem 0;
+    text-align: center;
+  }
+
+  .stats-highlight .stat {
+    padding: 1rem;
+  }
+
+  .stats-highlight .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 2.2rem;
+    color: var(--foam);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stats-highlight .stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* CTA section */
+  .cta-section {
+    text-align: center;
+    background: white;
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(26, 42, 46, 0.06);
+  }
+
+  .cta-section h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--sea-deep);
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+  }
+
+  .cta-section p {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    margin: 0 0.5rem;
+  }
+
+  .cta-button:hover {
+    background: var(--accent-warm);
+    transform: translateY(-2px);
+  }
+
+  .cta-button.secondary {
+    background: transparent;
+    border: 2px solid var(--sea-mid);
+    color: var(--sea-deep);
+  }
+
+  .cta-button.secondary:hover {
+    background: var(--sea-mid);
+    color: white;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--sea-deep);
+    color: rgba(200, 221, 213, 0.8);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--foam);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: var(--foam);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover { color: white; }
+
+  .footer-contact {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(200, 221, 213, 0.2);
+    padding-top: 2rem;
+  }
+
+  .footer-contact a {
+    color: var(--foam);
+    text-decoration: none;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    nav ul {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    main { margin-top: 120px; }
+
+    .research-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline-item {
+      padding-left: 0;
+      text-align: center;
+    }
+
+    .timeline::before { display: none; }
+
+    .timeline-year {
+      position: relative;
+      width: auto;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .stats-highlight {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cta-button {
+      display: block;
+      margin: 0.5rem 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-highlight {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <a href="index.html" class="logo">Middleton Island</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#" class="active">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="research-products.html" class="active">Research Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donations.html" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 3px;">Donate</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-header">
+    <h1>News & Research</h1>
+    <p>Marine biology at Middleton extends a legacy of intensive research and monitoring, channeling expertise from collaborating scientists across multiple universities to yield time series directly relevant to climate change interpretation and prediction.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <p>Marine biology at the Middleton station extends a legacy of intensive research and monitoring by the U.S. Fish and Wildlife Service and U.S. Geological Survey from 1974 through 2012, channels the expertise of collaborating scientists from multiple universities, and yields time series directly relevant to climate change interpretation and prediction.</p>
+
+      <p>Research at the station has long set a high standard for innovation, collaboration, and productivity. Since 1984 it has been a prime venue for career development among undergraduates, graduate students, and young professionals.</p>
+
+      <div class="stats-highlight">
+        <div class="stat">
+          <div class="stat-number">40+</div>
+          <div class="stat-label">Years of Research</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">50K+</div>
+          <div class="stat-label">Birds Monitored</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Students Trained</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Seabird Species</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <p class="section-eyebrow">Current & Future</p>
+      <h2>Active Research Areas</h2>
+
+      <div class="research-grid">
+        <div class="research-card">
+          <h3>Population Dynamics</h3>
+          <p>Long-term monitoring of black-legged kittiwakes, common murres, tufted puffins, rhinoceros auklets, and glaucous-winged gulls. Our datasets span over four decades, providing unprecedented insights into population fluctuations and demographic trends.</p>
+        </div>
+
+        <div class="research-card">
+          <h3>Foraging Ecology</h3>
+          <p>GPS and accelerometer tracking reveals how seabirds navigate the marine environment, from short nearshore trips to long-distance foraging in pelagic waters. Diet analysis provides real-time indicators of ecosystem health.</p>
+        </div>
+
+        <div class="research-card">
+          <h3>Breeding Biology</h3>
+          <p>Controlled experiments using artificial cliff habitats ("The Tower") allow unprecedented manipulation of breeding conditions. Studies include parental care, chick development, and responses to environmental stressors.</p>
+        </div>
+
+        <div class="research-card">
+          <h3>Climate Change Responses</h3>
+          <p>Middleton's location in a rapidly changing marine environment provides a natural laboratory for studying species responses to warming temperatures, shifting prey distributions, and extreme weather events.</p>
+        </div>
+
+        <div class="research-card">
+          <h3>Behavioral Ecology</h3>
+          <p>Mate choice studies using genetic markers reveal how seabirds select partners based on immune system compatibility. Behavioral observations document social dynamics and breeding strategies.</p>
+        </div>
+
+        <div class="research-card">
+          <h3>Marine Ecosystem Health</h3>
+          <p>Seabirds serve as sentinels of ocean conditions. Their breeding success, diet composition, and physiological condition provide early warning signals of ecosystem changes in the Gulf of Alaska.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section timeline-section">
+    <div class="section-content">
+      <p class="section-eyebrow">Research History</p>
+      <h2>Biological Timeline of Middleton</h2>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">1956</div>
+          <div class="timeline-content">
+            <h4>Inaugural Biological Reconnaissance</h4>
+            <p>Robert Rausch publishes first scientific description of bird habitats and species, documenting "several thousand" kittiwakes and "about 400" murres. This establishes the earliest baseline for any Alaska seabird colony.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1978</div>
+          <div class="timeline-content">
+            <h4>Intensive Research Begins</h4>
+            <p>Scott Hatch arrives for a full-season effort, establishing permanent monitoring plots. The kittiwake population stands at approximately 150,000 individuals, with egg-laying beginning 6 weeks ahead of other Gulf colonies.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1986</div>
+          <div class="timeline-content">
+            <h4>Long-term Studies Launch</h4>
+            <p>Mark-recapture study of adult survival in black-legged kittiwakes begins. Breeding studies are initiated for multiple species, documenting major changes in seabird populations and productivity.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1995</div>
+          <div class="timeline-content">
+            <h4>"The Tower" Age</h4>
+            <p>Enhancement of derelict Air Force radar towers for research purposes begins. Key modifications include replacement walls, one-way windows, and feeding tubes, enabling controlled experiments on free-living seabirds.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-content">
+            <h4>Modern Technology Integration</h4>
+            <p>GPS tracking, accelerometers, and genetic analysis transform research capabilities. Remote monitoring systems and satellite communication enhance data collection and safety.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <p class="section-eyebrow">Student Experiences</p>
+      <h2>Testimonials</h2>
+
+      <div class="testimonials">
+        <div class="testimonial">
+          <p class="testimonial-text">"The camaraderie among people, the most magnificent sunsets ever, the best culinary inventions, the most peculiar rituals and habits make Middleton a very special place indeed! It is like a lost paradise that allows us to develop our research, while we disconnect from the world and enjoy the best of it: nature, people and experiences!"</p>
+          <div class="testimonial-author">Naya Sena</div>
+          <div class="testimonial-affiliation">University of Hokkaido</div>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial-text">"A summer on Middleton takes you on an epic journey as you watch seabirds move through their breeding season. In the morning you might be conducting a rigorous experiment in the tower, then spend the afternoon searching for puffins on the cliffs. As a student, I was able to get involved in so many diverse projects, developing skillsets and collaborations outside of my own research."</p>
+          <div class="testimonial-author">Shannon Whelan</div>
+          <div class="testimonial-affiliation">McGill University</div>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial-text">"There is no setup like it, making opportunity for seabird research second to none. Middleton Island and the ISRC deserve all the care and attention science has to offer because they offer so much to science! It quickly becomes a home, a place of peace, a place chock full of history – Alaskan native history, military history and now scientific history."</p>
+          <div class="testimonial-author">Sierra Pete</div>
+          <div class="testimonial-affiliation">Bucknell University</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <div class="cta-section">
+        <h3>Join Our Research Community</h3>
+        <p>Whether you're interested in collaboration, student opportunities, or supporting our mission, we welcome scientists and conservationists from around the world.</p>
+        <a href="contact.html" class="cta-button">Contact Us</a>
+        <a href="donations.html" class="cta-button secondary">Support Research</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-name">Institute for Seabird Research & Conservation</div>
+    <p>Middleton Island Marine Biological Station</p>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="#">Research</a>
+      <a href="team.html">Team</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="donations.html">Donate</a>
+    </div>
+
+    <div class="footer-contact">
+      <p>&copy; 2026 ISRC &middot; <a href="mailto:shatch.isrc@gmail.com">shatch.isrc@gmail.com</a></p>
+      <p>12850 Mountain Place, Anchorage, Alaska 99516 &middot; 907-301-6352</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
