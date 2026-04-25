@@ -240,6 +240,75 @@
     padding-bottom: 1rem;
   }
 
+  /* Historical Timeline */
+  .history-section {
+    background: var(--warm-white);
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 3rem auto 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--foam);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 120px;
+  }
+
+  .timeline-year {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    background: var(--sea-deep);
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .timeline-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--sea-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    .timeline-item {
+      padding-left: 0;
+      text-align: center;
+    }
+
+    .timeline::before { display: none; }
+
+    .timeline-year {
+      position: relative;
+      width: auto;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+  }
+
   /* Map container */
   .map-container {
     background: white;
@@ -345,7 +414,6 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="#" class="active">About</a></li>
         <li><a href="research.html">Research</a></li>
-        <li><a href="team.html">Team</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="research-products.html">Research Products</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -451,6 +519,56 @@
     </div>
   </section>
 
+  <section class="section history-section">
+    <div class="section-content">
+      <p class="section-eyebrow">Historical Timeline</p>
+      <h2>From Military Base to Research Station</h2>
+      <p>The course of biological investigations on Middleton is inextricably tied to the island's unique cultural and geological history.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">1956</div>
+          <div class="timeline-content">
+            <h4>First Biological Survey</h4>
+            <p>Robert Rausch conducts an inaugural biological reconnaissance, documenting "several thousand" kittiwakes and about 400 murres, establishing the earliest baseline of seabird observations available for any Alaska island.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1964</div>
+          <div class="timeline-content">
+            <h4>The Great Alaska Earthquake</h4>
+            <p>The earthquake raises the island nearly 4 meters in minutes, exposing previously submerged seafloor and greatly expanding the island's area, fundamentally changing its ecology.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1978</div>
+          <div class="timeline-content">
+            <h4>Intensive Research Begins</h4>
+            <p>Scott Hatch arrives for a full-season effort (April-August) as part of OCSEAP, establishing permanent plots for population monitoring. The kittiwake population reaches approximately 150,000 individuals.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1986</div>
+          <div class="timeline-content">
+            <h4>Long-term Studies Launch</h4>
+            <p>Sustained, intensive bird research begins with mark-recapture studies of adult survival in black-legged kittiwakes and breeding studies for multiple seabird species.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1995</div>
+          <div class="timeline-content">
+            <h4>"The Tower" Age Begins</h4>
+            <p>Enhancement of derelict Air Force radar towers for research purposes begins. Novel artificial "cliff" habitats are developed, enabling controlled feeding experiments and behavioral studies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section highlights">
     <div class="section-content">
       <p class="section-eyebrow">Frequently Asked</p>
@@ -489,7 +607,6 @@
       <a href="index.html">Home</a>
       <a href="#">About</a>
       <a href="research.html">Research</a>
-      <a href="team.html">Team</a>
       <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
       <a href="donations.html">Donate</a>

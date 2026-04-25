@@ -6,10 +6,9 @@ Static HTML website for the [Institute for Seabird Research and Conservation](ht
 
 | File | Description |
 |------|-------------|
-| `index.html` | Homepage with video hero, stats, team, and timeline |
-| `about.html` | Island history, location, and FAQ |
+| `index.html` | Homepage with stats, team, and research highlights |
+| `about.html` | Island history, location, timeline, and FAQ |
 | `research.html` | Research areas, news, and scientific timeline |
-| `team.html` | Researcher profiles and affiliations |
 | `gallery.html` | Photo gallery (People, Island, Research) with lightbox |
 | `contact.html` | Contact information and collaboration inquiries |
 | `donations.html` | Donations page with Infinite Giving widget |
