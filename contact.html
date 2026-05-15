@@ -3,7 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact - Middleton Island Marine Biological Station</title>
+<title>Contact ISRC Middleton | Research Collaborations and Donations</title>
+<meta name="description" content="Contact the Institute for Seabird Research and Conservation about research collaborations, field station logistics, donations, and Middleton Island Marine Biological Station inquiries.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://isrcmiddleton.org/contact.html">
+<meta property="og:site_name" content="ISRC Middleton">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact ISRC Middleton | Research Collaborations and Donations">
+<meta property="og:description" content="Reach the Institute for Seabird Research and Conservation for collaborations, field station questions, and support inquiries.">
+<meta property="og:url" content="https://isrcmiddleton.org/contact.html">
+<meta property="og:image" content="https://isrcmiddleton.org/media/ISRC.jpg">
+<meta property="og:image:alt" content="Institute for Seabird Research and Conservation logo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact ISRC Middleton | Research Collaborations and Donations">
+<meta name="twitter:description" content="Reach the Institute for Seabird Research and Conservation for collaborations, field station questions, and support inquiries.">
+<meta name="twitter:image" content="https://isrcmiddleton.org/media/ISRC.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://isrcmiddleton.org/#organization",
+      "name": "Institute for Seabird Research and Conservation",
+      "alternateName": "ISRC",
+      "url": "https://isrcmiddleton.org/",
+      "logo": "https://isrcmiddleton.org/media/ISRC.jpg",
+      "email": "info@isrcmiddleton.org",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "general inquiries",
+        "email": "info@isrcmiddleton.org",
+        "areaServed": "US"
+      }
+    },
+    {
+      "@type": "ContactPage",
+      "@id": "https://isrcmiddleton.org/contact.html#webpage",
+      "url": "https://isrcmiddleton.org/contact.html",
+      "name": "Contact ISRC Middleton",
+      "description": "Contact the Institute for Seabird Research and Conservation about research collaborations, field station logistics, donations, and Middleton Island Marine Biological Station inquiries.",
+      "about": {
+        "@id": "https://isrcmiddleton.org/#organization"
+      }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -80,13 +126,35 @@
   main { margin-top: 80px; }
 
   .page-header {
+    position: relative;
+    overflow: hidden;
     background: linear-gradient(135deg, var(--sea-deep) 0%, var(--sea-mid) 100%);
     color: white;
     padding: 4rem 2rem;
     text-align: center;
   }
 
+  .page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(30, 58, 63, 0.62), rgba(45, 90, 94, 0.62)),
+                linear-gradient(135deg, rgba(30, 58, 63, 0.24) 0%, rgba(45, 90, 94, 0.24) 100%);
+    z-index: 1;
+  }
+
+  .page-header-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
   .page-header h1 {
+    position: relative;
+    z-index: 2;
     font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
     font-size: clamp(2.5rem, 5vw, 3.5rem);
@@ -94,6 +162,8 @@
   }
 
   .page-header p {
+    position: relative;
+    z-index: 2;
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.9);
     max-width: 600px;
@@ -401,7 +471,7 @@
         <li><a href="research.html">Research</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="research-products.html">Research Products</a></li>
-        <li><a href="#" class="active">Contact</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
         <li><a href="donations.html" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 3px;">Donate</a></li>
       </ul>
     </nav>
@@ -410,6 +480,9 @@
 
 <main>
   <section class="page-header">
+    <video class="page-header-video" autoplay muted loop playsinline preload="metadata" poster="media/Screen-Shot-2020-03-30-at-8.28.55-PM.png" aria-hidden="true">
+      <source src="media/Middleton_Island_Video.mp4" type="video/mp4">
+    </video>
     <h1>Get in Touch</h1>
     <p>Connect with our team to learn about research opportunities, collaboration, or how you can support our mission.</p>
   </section>
@@ -424,11 +497,7 @@
           <h3>General Inquiries</h3>
           <div class="contact-info">
             <p><strong>Institute for Seabird Research and Conservation</strong></p>
-            <p>12850 Mountain Place<br>
-            Anchorage, Alaska 99516</p>
-
-            <p><strong>Phone:</strong> <a href="tel:907-301-6352">907-301-6352</a></p>
-            <p><strong>Email:</strong> <a href="mailto:shatch.isrc@gmail.com">shatch.isrc@gmail.com</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@isrcmiddleton.org">info@isrcmiddleton.org</a></p>
           </div>
         </div>
 
@@ -545,7 +614,7 @@
       <a href="about.html">About</a>
       <a href="research.html">Research</a>
       <a href="gallery.html">Gallery</a>
-      <a href="#">Contact</a>
+      <a href="contact.html">Contact</a>
       <a href="donations.html">Donate</a>
     </div>
 
@@ -556,6 +625,45 @@
 </footer>
 
 <script>
+function primeBannerVideo(selector) {
+  const bannerVideo = document.querySelector(selector);
+
+  if (!bannerVideo) {
+    return;
+  }
+
+  bannerVideo.muted = true;
+  bannerVideo.defaultMuted = true;
+  bannerVideo.playsInline = true;
+
+  const startBannerVideo = () => {
+    const playAttempt = bannerVideo.play();
+    if (playAttempt && typeof playAttempt.catch === 'function') {
+      playAttempt.catch(() => {});
+    }
+  };
+
+  if (bannerVideo.readyState >= 2) {
+    startBannerVideo();
+  } else {
+    bannerVideo.addEventListener('canplay', startBannerVideo, { once: true });
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && bannerVideo.paused) {
+      startBannerVideo();
+    }
+  });
+
+  document.addEventListener('pointerdown', () => {
+    if (bannerVideo.paused) {
+      startBannerVideo();
+    }
+  }, { once: true });
+}
+
+primeBannerVideo('.page-header-video');
+
 function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -573,7 +681,12 @@ function handleFormSubmit(event) {
     emailSubject = `[${inquiryType.toUpperCase()}] ${subject}`;
   }
 
-  const mailtoLink = `mailto:shatch.isrc@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(
+  const researchInquiryTypes = new Set(['research', 'student']);
+  const destinationEmail = researchInquiryTypes.has(inquiryType)
+    ? 'shatch.isrc@gmail.com'
+    : 'info@isrcmiddleton.org';
+
+  const mailtoLink = `mailto:${destinationEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(
     `Name: ${name}\nEmail: ${email}\nInquiry Type: ${inquiryType || 'Not specified'}\n\nMessage:\n${message}`
   )}`;
 
